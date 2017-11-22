@@ -48,6 +48,7 @@ public class SocialLunch {
 
     }
 
+
     public void populateDB () {
 
         //User newUser = new User("John", "Doe", "john@doe.com", "+3615425425", "mfwkmfkem","",(byte) 1,(byte) 0,null,null);
@@ -67,6 +68,5 @@ public class SocialLunch {
         transaction.commit();
         System.out.println("Commit done");
     }
-
 
 }
