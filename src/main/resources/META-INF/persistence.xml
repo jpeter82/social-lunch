@@ -25,8 +25,8 @@
 
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sociallunchdb"/>
-            <property name="javax.persistence.jdbc.user" value="jpeter82"/>
-            <property name="javax.persistence.jdbc.password" value="tIAspfpOs82"/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/>
+            <property name="javax.persistence.jdbc.password" value="jelszo24"/>
             <!-- <property name="javax.persistence.sql-load-script-source" value="insert.sql"/> -->
         </properties>
     </persistence-unit>

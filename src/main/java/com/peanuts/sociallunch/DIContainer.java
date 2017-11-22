@@ -17,7 +17,11 @@ public class DIContainer {
         AddressDao addressDao = new AddressDao(entityManager);
         AddressController addressController = new AddressController(addressDao);
 
-        SocialLunch socialLunch = new SocialLunch(entityManager, addressController);
+        EventDao eventDao = new EventDao(entityManager);
+        EventController eventController = new EventController(eventDao);
+
+        SocialLunch socialLunch = new SocialLunch(entityManager, addressController,
+                 eventController);
 
         return socialLunch;
     }

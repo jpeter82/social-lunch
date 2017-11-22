@@ -8,6 +8,9 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "getAllEvents", query = "FROM Event")
+})
 @Table(name="events")
 public class Event {
 
@@ -40,16 +43,20 @@ public class Event {
     @Column(name = "created")
     private Timestamp createdDate;
 
+    @Column(name = "picture")
+    private String picture;
+
 
     public Event() {
     }
 
-    public Event(User host, Place place, String description,  Timestamp date, String name) {
+    public Event(User host, Place place, String description,  Timestamp date, String name, String picture) {
         this.host = host;
         this.place = place;
         this.description = description;
         this.date = date;
         this.title = name;
+        this.picture = picture;
     }
 
     public long getId() {
@@ -124,5 +131,12 @@ public class Event {
         return createdDate;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 }
 
