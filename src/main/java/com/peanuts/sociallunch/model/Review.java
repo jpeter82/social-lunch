@@ -25,7 +25,7 @@ public class Review {
     @Column(name = "rating", nullable = false)
     private int rating;
 
-    @Column(name = "created", nullable = false)
+    @Column(name = "created") // nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Date createdDate;
 

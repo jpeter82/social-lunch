@@ -52,21 +52,21 @@
     <div th:replace="header :: navbar-bottom"></div>
     <div class="android-content mdl-layout__content">
         <a name="top"></a>
-        <!--<div class="android-be-together-section mdl-typography&#45;&#45;text-center">-->
-            <!--<div class="logo-font android-slogan" style="color: #ffffff;">-->
-                <!--<div class="sl-slogan">be together. let's talk to each other.-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="logo-font android-sub-slogan" style="color: #ffffff;">-->
-                <!--<span class="sl-sub-slogan">-->
-            <!--welcome to Social-->
-                <!--<span style="position: relative; top: 3px;">-->
-                    <!--<i class="material-icons">people_outline</i>-->
-                <!--</span>-->
-                <!--Lunch be yourself. do your thing. see what's going on.-->
-                <!--</span>-->
-            <!--</div>-->
-        <!--</div>-->
+        <div class="android-be-together-section mdl-typography--text-center">
+            <div class="logo-font android-slogan">
+                <div class="sl-slogan">be together. let's talk to each other.
+                </div>
+            </div>
+            <div class="logo-font android-sub-slogan">
+                <span class="sl-sub-slogan">
+            welcome to Social
+                <span style="position: relative; top: 3px;">
+                    <i class="material-icons">people_outline</i>
+                </span>
+                Lunch be yourself. do your thing. see what's going on.
+                </span>
+            </div>
+        </div>
         <div class="android-more-section">
             <div class="android-section-title mdl-typography--display-1-color-contrast">More events from our Friends
             </div>
@@ -75,8 +75,7 @@
                 <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp"
                      th:each="event,iterStat : ${events}">
                     <div class="mdl-card__media">
-                        <!--<img th:attr="src='images/' + ${event.picture}">-->
-                        <!--<img src="/images/barrel.jpg">-->
+                        <img th:attr="src='/images/' + ${event.picture}">
                     </div>
                     <div class="mdl-card__title">
                         <h4 class="mdl-card__title-text" th:text="${event.title}"></h4>

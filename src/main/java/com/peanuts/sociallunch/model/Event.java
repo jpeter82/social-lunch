@@ -43,18 +43,20 @@ public class Event {
     @Column(name = "created")
     private Timestamp createdDate;
 
-    //private String picture;
+    @Column(name = "picture")
+    private String picture;
 
 
     public Event() {
     }
 
-    public Event(User host, Place place, String description,  Timestamp date, String name) {
+    public Event(User host, Place place, String description,  Timestamp date, String name, String picture) {
         this.host = host;
         this.place = place;
         this.description = description;
         this.date = date;
         this.title = name;
+        this.picture = picture;
     }
 
     public long getId() {
@@ -129,5 +131,12 @@ public class Event {
         return createdDate;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 }
 
