@@ -48,6 +48,11 @@ public class SocialLunch {
             return new ThymeleafTemplateEngine().render(this.eventController.getAllEvents());
         });
 
+        get("/event", (req, res) -> {
+            String eventId = req.queryParams("eid");
+            return new ThymeleafTemplateEngine().render(this.eventController.findEventById(eventId));
+        });
+
         get("/address", (req, res) -> {
             return new ThymeleafTemplateEngine().render(this.addressController.getAllAddresses());
         });

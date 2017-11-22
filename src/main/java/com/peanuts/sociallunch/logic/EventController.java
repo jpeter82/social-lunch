@@ -28,4 +28,13 @@ public class EventController {
         return new ModelAndView(params,"/home/index");
     }
 
+
+    public ModelAndView findEventById(String eventId) {
+        List<Event> result = eventDao.findEventById(eventId);
+        Map params = new HashMap<>();
+        params.put("events", result);
+
+        return new ModelAndView(params,"/home/index");
+    }
+
 }
