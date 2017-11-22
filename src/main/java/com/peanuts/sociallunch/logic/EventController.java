@@ -30,11 +30,11 @@ public class EventController {
 
 
     public ModelAndView findEventById(String eventId) {
-        List<Event> result = eventDao.findEventById(eventId);
+        Event result = eventDao.findEventById(eventId);
         Map params = new HashMap<>();
-        params.put("events", result);
+        params.put("event", result);
 
-        return new ModelAndView(params,"/home/index");
+        return new ModelAndView(params,"event");
     }
 
 }

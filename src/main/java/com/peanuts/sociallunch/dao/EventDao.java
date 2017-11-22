@@ -22,12 +22,13 @@ public class EventDao {
 
     }
 
-    public List<Event> findEventById(String eventId) {
+    public Event findEventById(String eventId) {
 
         long eventIdLong = Long.parseLong(eventId);
         Query eventQuery = em.createNamedQuery("findEventById", Event.class).setParameter("id", eventIdLong);
         List<Event> result = eventQuery.getResultList();
+        Event eventById = result.get(0);
 
-        return result;
+        return eventById;
     }
 }
