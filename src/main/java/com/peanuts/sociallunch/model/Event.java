@@ -8,6 +8,9 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "getAllEvents", query = "FROM Event")
+})
 @Table(name="events")
 public class Event {
 
@@ -39,6 +42,8 @@ public class Event {
     @CreationTimestamp
     @Column(name = "created")
     private Timestamp createdDate;
+
+    //private String picture;
 
 
     public Event() {
