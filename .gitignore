@@ -143,5 +143,6 @@ buildNumber.properties
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 
+src/main/resources/META-INF/persistence.xml
 
 # End of https://www.gitignore.io/api/java,maven,java-web,intellij,intellij+all
