@@ -51,7 +51,7 @@ public class SocialLunch {
         });
 
         get("/event", (req, res) -> {
-            String eventId = req.queryParams("eid");
+            long eventId = Long.parseLong(req.queryParams("eid"));
             return new ThymeleafTemplateEngine().render(this.eventController.findEventById(eventId));
         });
 
@@ -62,14 +62,12 @@ public class SocialLunch {
             return new ThymeleafTemplateEngine().render(this.reviewController.getAllReview());
         });
         post("/review2", (req, res) -> {
-//
-//           String user =  req.queryParams("user");
-//           String event =  req.queryParams("event");
-            String user = "1";
-            String event = "1";
-           String rating =  req.queryParams("rating");
 
-            return new ThymeleafTemplateEngine().render(this.reviewController.writeReview(user,event,rating));
+            long user = 1L;
+            long event = 1L;
+            int rating = Integer.parseInt(req.queryParams("rating"));
+
+            return new ThymeleafTemplateEngine().render(this.reviewController.writeReview(user, event, rating));
         });
 
 

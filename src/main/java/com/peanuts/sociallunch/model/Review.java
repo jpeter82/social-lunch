@@ -1,14 +1,11 @@
 package com.peanuts.sociallunch.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getAllReview",query ="SELECT rev FROM Review rev" ),
-        @NamedQuery(name = "reviewgiver", query = "SELECT us FROM User us WHERE id=:id" ),
-        @NamedQuery(name = "reviewEvent", query = "SELECT ev FROM Event ev WHERE id=:id")
-
+        @NamedQuery(name = "getAllReview",query ="SELECT rev FROM Review rev")
 })
 @Table(name="reviews")
 public class Review {

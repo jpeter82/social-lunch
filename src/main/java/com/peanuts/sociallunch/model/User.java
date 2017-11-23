@@ -10,6 +10,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@NamedQueries({
+        @NamedQuery(name = "findUserById", query = "SELECT us FROM User us WHERE id=:id" )
+})
 public class User {
 
     @Id

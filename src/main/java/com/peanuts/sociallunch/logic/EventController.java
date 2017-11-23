@@ -3,6 +3,7 @@ package com.peanuts.sociallunch.logic;
 import com.peanuts.sociallunch.dao.AddressDao;
 
 import com.peanuts.sociallunch.dao.EventDao;
+import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.Address;
 import com.peanuts.sociallunch.model.Event;
 import com.peanuts.sociallunch.model.User;
@@ -21,9 +22,11 @@ import java.util.Map;
 public class EventController {
 
     private EventDao eventDao;
+    private UserDao userDao;
 
-    public EventController(EventDao eventDao) {
+    public EventController(EventDao eventDao, UserDao userDao) {
         this.eventDao = eventDao;
+        this.userDao = userDao;
     }
 
     // Handles one event view, create new event
@@ -86,7 +89,7 @@ public class EventController {
     }
 
 
-    public ModelAndView findEventById(String eventId) {
+    public ModelAndView findEventById(long eventId) {
         Event result = eventDao.findEventById(eventId);
         Map params = new HashMap<>();
         params.put("event", result);
