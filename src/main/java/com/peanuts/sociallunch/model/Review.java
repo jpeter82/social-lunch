@@ -4,6 +4,12 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "getAllReview",query ="SELECT rev FROM Review rev" ),
+        @NamedQuery(name = "reviewgiver", query = "SELECT us FROM User us WHERE id=:id" ),
+        @NamedQuery(name = "reviewEvent", query = "SELECT ev FROM Event ev WHERE id=:id")
+
+})
 @Table(name="reviews")
 public class Review {
 
@@ -25,7 +31,7 @@ public class Review {
     @Column(name = "rating", nullable = false)
     private int rating;
 
-    @Column(name = "created", nullable = false)
+    @Column(name = "created")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Date createdDate;
 
