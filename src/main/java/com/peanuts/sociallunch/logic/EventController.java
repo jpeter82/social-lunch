@@ -32,7 +32,7 @@ public class EventController {
         Map params = new HashMap<>();
         //params.put("address", result);
 
-        return new ModelAndView(params,"/add-event-form");
+        return new ModelAndView(params,"/new-event");
     }
 
     public ModelAndView createNewEvent(Request request, Response response) {
@@ -62,13 +62,15 @@ public class EventController {
             newEvent.setCapacity(capacity);
             newEvent.setDate(datetime);
             newEvent.setDescription(description);
-            newEvent.setHost(user);
+            newEvent.setHost(null);
             eventDao.save(newEvent);
-            response.redirect("/event-created");
+            //response.redirect("/event-created");
         }
 
         Map params = new HashMap<>();
-        return new ModelAndView(params,"/add-event-form");
+        List<Event> result = eventDao.getAll();
+        params.put("events", result);
+        return new ModelAndView(params,"/home/index");
     }
 
     public ModelAndView addedEvent() {
