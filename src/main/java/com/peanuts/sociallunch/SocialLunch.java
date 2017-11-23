@@ -93,7 +93,7 @@ public class SocialLunch {
     public void populateDB() {
 
         long time = System.currentTimeMillis();
-        java.sql.Timestamp date = new java.sql.Timestamp(time);
+        Timestamp date = new Timestamp(time);
 
         String lorem =  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
                         "Vestibulum faucibus sapien sit amet lectus dictum, " +
@@ -119,27 +119,27 @@ public class SocialLunch {
         Address newAdress2 = new Address("HUN", "Bud", "Kiraly",
                 "utca", "11");
 
-        Place newPlace = new Place(newAdress, 112);
-        Place newPlace2 = new Place(newAdress2, 110);
-        Place newPlace3 = new Place(newAdress2, 8);
+        /*Address newPlace = new Place(newAdress, 112);
+        Address newPlace2 = new Place(newAdress2, 110);
+        Address newPlace3 = new Place(newAdress2, 8);*/
 
-        Event event1 = new Event(newUser, newPlace, lorem, date, "Let's eat",
+        Event event1 = new Event(newUser, newAdress2, lorem, date, "Let's eat",
                 "bb.jpg");
-        Event event2 = new Event(newUser2, newPlace, lorem, date, "Happy :)",
+        Event event2 = new Event(newUser2, newAdress2, lorem, date, "Happy :)",
                 "cake.jpg");
-        Event event3 = new Event(newUser2, newPlace, lorem, date, "Cheer",
+        Event event3 = new Event(newUser2, newAdress2, lorem, date, "Cheer",
                 "cheer.jpg");
-        Event event4 = new Event(newUser, newPlace, lorem, date, "BB party",
+        Event event4 = new Event(newUser, newAdress2, lorem, date, "BB party",
                 "girls.jpg");
-        Event event5 = new Event(newUser, newPlace, lorem, date, "India",
+        Event event5 = new Event(newUser, newAdress2, lorem, date, "India",
                 "india.jpg");
-        Event event6 = new Event(newUser2, newPlace, lorem, date, "Awesome pig",
+        Event event6 = new Event(newUser2, newAdress2, lorem, date, "Awesome pig",
                 "pig.jpg");
-        Event event7 = new Event(newUser, newPlace, lorem, date, "Roll",
+        Event event7 = new Event(newUser, newAdress2, lorem, date, "Roll",
                 "roll.jpg");
-        Event event8 = new Event(newUser2, newPlace, lorem, date, "Wine tateing",
+        Event event8 = new Event(newUser2, newAdress2, lorem, date, "Wine tateing",
                 "wine.jpg");
-        Event event9 = new Event(newUser2, newPlace, lorem, date, "Crazy",
+        Event event9 = new Event(newUser2, newAdress2, lorem, date, "Crazy",
                 "barrel.png");
 
         Reservation reservation = new Reservation(event1, newUser);
@@ -152,9 +152,7 @@ public class SocialLunch {
         transaction.begin();
         this.entityManager.persist(newAdress);
         this.entityManager.persist(newAdress2);
-        this.entityManager.persist(newPlace);
-        this.entityManager.persist(newPlace2);
-        this.entityManager.persist(newPlace3);
+        this.entityManager.persist(newAdress2);
         this.entityManager.persist(newUser);
         this.entityManager.persist(newUser2);
         this.entityManager.persist(event1);
