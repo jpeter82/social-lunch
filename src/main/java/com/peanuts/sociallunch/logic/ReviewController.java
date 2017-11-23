@@ -1,6 +1,7 @@
 package com.peanuts.sociallunch.logic;
 
 import com.peanuts.sociallunch.dao.ReviewDao;
+import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.Event;
 import com.peanuts.sociallunch.model.Review;
 import com.peanuts.sociallunch.model.User;
@@ -10,31 +11,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 public class ReviewController {
 
     private ReviewDao reviewDao;
+    private UserDao userDao;
 
-    public ReviewController(ReviewDao reviewDao) {
+    public ReviewController(ReviewDao reviewDao, UserDao userDao) {
         this.reviewDao = reviewDao;
+        this.userDao = userDao;
     }
 
     public ModelAndView getAllReview() {
-
         Map params = new HashMap<>();
-
         return new ModelAndView(params, "review");
     }
 
-    public ModelAndView writeReview(String usId,String eventId, String rating){
+    public ModelAndView writeReview(long userId, long eventId, int rating) {
+
         long time = System.currentTimeMillis();
         java.sql.Timestamp date = new java.sql.Timestamp(time);
-        User user = reviewDao.getuser(usId);
-//        Event event = reviewDao.getEvent(eventId);
+        User user = userDao.getById(userId);
         Review review = new Review();
-        int rate = Integer.parseInt(rating);
         review.setGiver(user);
-//        review.setEvent(event);
-        review.setRating(rate);
+        review.setRating(rating);
 
         reviewDao.writeReview(review);
 
@@ -42,6 +42,5 @@ public class ReviewController {
         return new ModelAndView(params,"address");
 
     }
-
 
 }

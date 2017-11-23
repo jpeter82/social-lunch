@@ -28,14 +28,13 @@ public class EventDao {
         return events;
     }
 
-    public Event findEventById(String eventId) {
+    public Event findEventById(long eventId) {
 
-        long eventIdLong = Long.parseLong(eventId);
-        Query eventQuery = entityManager.createNamedQuery("findEventById", Event.class).setParameter("id", eventIdLong);
+        Query eventQuery = entityManager.createNamedQuery("findEventById", Event.class).setParameter("id", eventId);
         List<Event> result = eventQuery.getResultList();
-        Event eventById = result.get(0);
+        Event event = result.get(0);
 
-        return eventById;
+        return event;
     }
 
 }

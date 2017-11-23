@@ -16,16 +16,16 @@ public class DIContainer {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         AddressDao addressDao = new AddressDao(entityManager);
-        AddressController addressController = new AddressController(addressDao);
-      
         ReviewDao reviewDao= new ReviewDao(entityManager);
-        ReviewController reviewController = new ReviewController(reviewDao);
-
+        UserDao userDao = new UserDao(entityManager);
         EventDao eventDao = new EventDao(entityManager);
-        EventController eventController = new EventController(eventDao);
+
+        AddressController addressController = new AddressController(addressDao);
+        EventController eventController = new EventController(eventDao, userDao);
+        ReviewController reviewController = new ReviewController(reviewDao, userDao);
 
         SocialLunch socialLunch = new SocialLunch(entityManager, addressController,
-                 eventController, reviewController);
+                eventController, reviewController);
       
         return socialLunch;
     }
