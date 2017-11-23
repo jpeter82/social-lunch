@@ -1,20 +1,19 @@
 package com.peanuts.sociallunch.logic;
 
-import com.peanuts.sociallunch.dao.AddressDao;
 
 import com.peanuts.sociallunch.dao.EventDao;
 import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.Address;
 import com.peanuts.sociallunch.model.Event;
 import com.peanuts.sociallunch.model.User;
+import com.peanuts.sociallunch.util.ViewUtil;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-
+import spark.Route;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,17 +28,16 @@ public class EventController {
         this.userDao = userDao;
     }
 
-    // Handles one event view, create new event
-    public ModelAndView showAddNewForm() {
-        //List<Address> result = eventDao.getAll();
+    public Route getAllEvents = (Request request, Response response) -> {
+        List<Event> result = eventDao.getAll();
         Map params = new HashMap<>();
-        //params.put("address", result);
+        params.put("events", result);
+        return ViewUtil.render(request, params, "/home/index");
+    };
 
-        return new ModelAndView(params,"/new-event");
-    }
+    public Route showAddNewForm = (Request request, Response response) -> ViewUtil.render(request, new HashMap(),"/new-event");
 
-    public ModelAndView createNewEvent(Request request, Response response) {
-
+    public Route createNewEvent = (Request request, Response response) -> {
 
         String title = request.queryParams("event-title");
         Integer capacity = Integer.parseInt(request.queryParams("event-capacity"));
@@ -51,6 +49,7 @@ public class EventController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         Address address = new Address("Hungary", "Budapest", "1111", "Some street 43. 4/2", "Home");
         String description = request.queryParams("event-description");
         User user = new User("Jee", "Pa",
@@ -67,34 +66,26 @@ public class EventController {
             newEvent.setDescription(description);
             newEvent.setHost(null);
             eventDao.save(newEvent);
-            //response.redirect("/event-created");
+            response.redirect("/event-created");
         }
 
         Map params = new HashMap<>();
         List<Event> result = eventDao.getAll();
         params.put("events", result);
-        return new ModelAndView(params,"/home/index");
-    }
+        return ViewUtil.render(request, params, "/home/index");
+    };
 
-    public ModelAndView addedEvent() {
-        Map params = new HashMap<>();
-        return new ModelAndView(params,"/event-added");
-    }
-
-    public ModelAndView getAllEvents() {
-        List<Event> result = eventDao.getAll();
-        Map params = new HashMap<>();
-        params.put("events", result);
-        return new ModelAndView(params,"/home/index");
-    }
+    public Route addedEvent = (Request request, Response response) -> ViewUtil.render(request, new HashMap(),"/event-added");
 
 
-    public ModelAndView findEventById(long eventId) {
+    public Route findEventById = (Request request, Response response) -> {
+
+        long eventId = Long.parseLong(request.queryParams("eid"));
         Event result = eventDao.findEventById(eventId);
         Map params = new HashMap<>();
         params.put("event", result);
 
-        return new ModelAndView(params,"event");
-    }
+        return ViewUtil.render(request, params, "event");
+    };
 
 }
