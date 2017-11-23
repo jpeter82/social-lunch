@@ -8,6 +8,10 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "getAllEvents", query = "FROM Event"),
+        @NamedQuery(name = "findEventById" , query ="FROM Event WHERE id=:id" )
+})
 @Table(name="events")
 public class Event {
 
@@ -44,19 +48,25 @@ public class Event {
     @Column(name = "created")
     private Timestamp createdDate;
 
+    @Column(name = "picture")
+    private String picture;
+
 
     public Event() {
     }
 
-    public Event(User host, Address address, String description,  Date date, String title) {
+
+    public Event(User host, Address address, String description,  Date date, String title, String picture) {
         this.host = host;
         this.address = address;
         this.description = description;
         this.date = date;
+        this.picture = picture;
         this.title = title;
     }
 
-    public Event(String title, User host, Integer capacity, Address address, String description, Date date, Timestamp createdDate) {
+    public Event(String title, User host, Integer capacity, Address address, 
+                 String description, Date date, Timestamp createdDate) {
         this.title = title;
         this.host = host;
         this.capacity = capacity;
@@ -146,5 +156,12 @@ public class Event {
         this.capacity = capacity;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 }
 

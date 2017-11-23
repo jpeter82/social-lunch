@@ -1,5 +1,6 @@
 package com.peanuts.sociallunch.logic;
 
+import com.peanuts.sociallunch.dao.AddressDao;
 
 import com.peanuts.sociallunch.dao.EventDao;
 import com.peanuts.sociallunch.model.Address;
@@ -11,6 +12,7 @@ import spark.Response;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +67,29 @@ public class EventController {
     public ModelAndView addedEvent() {
         Map params = new HashMap<>();
         return new ModelAndView(params,"/event-added");
+    }
+
+
+    private EventDao eventDao;
+
+    public EventController(EventDao evetDao) {
+        this.eventDao = evetDao;
+    }
+
+    public ModelAndView getAllEvents() {
+        List<Event> result = eventDao.getAll();
+        Map params = new HashMap<>();
+        params.put("events", result);
+        return new ModelAndView(params,"/home/index");
+    }
+
+
+    public ModelAndView findEventById(String eventId) {
+        Event result = eventDao.findEventById(eventId);
+        Map params = new HashMap<>();
+        params.put("event", result);
+
+        return new ModelAndView(params,"event");
     }
 
 }

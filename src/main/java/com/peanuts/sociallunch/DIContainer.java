@@ -11,17 +11,22 @@ import javax.persistence.Persistence;
 public class DIContainer {
 
     public SocialLunch init() {
+      
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("socialLunch");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         AddressDao addressDao = new AddressDao(entityManager);
         AddressController addressController = new AddressController(addressDao);
+      
+        ReviewDao reviewDao= new ReviewDao(entityManager);
+        ReviewController reviewController = new ReviewController(reviewDao);
 
         EventDao eventDao = new EventDao(entityManager);
         EventController eventController = new EventController(eventDao);
 
-        SocialLunch socialLunch = new SocialLunch(entityManager, addressController, eventController);
-
+        SocialLunch socialLunch = new SocialLunch(entityManager, addressController,
+                 eventController, reviewController);
+      
         return socialLunch;
     }
 
