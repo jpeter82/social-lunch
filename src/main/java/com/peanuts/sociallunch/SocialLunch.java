@@ -6,6 +6,7 @@ import javax.persistence.*;
 import static spark.Spark.*;
 
 import com.peanuts.sociallunch.logic.AddressController;
+import com.peanuts.sociallunch.logic.EventController;
 import com.peanuts.sociallunch.model.Address;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
@@ -16,13 +17,15 @@ public class SocialLunch {
 
     private EntityManager entityManager;
     private AddressController addressController;
+    private EventController eventController;
 
     public SocialLunch() {
     }
 
-    public SocialLunch(EntityManager entityManager, AddressController addressController) {
+    public SocialLunch(EntityManager entityManager, AddressController addressController, EventController eventController) {
         this.entityManager = entityManager;
         this.addressController = addressController;
+        this.eventController = eventController;
     }
 
     public void start() {
@@ -43,8 +46,19 @@ public class SocialLunch {
             return new ThymeleafTemplateEngine().render(this.addressController.getAllAddresses());
         });
 
-        enableDebugScreen();
+        get("/add-event", (req, res) -> {
+            return new ThymeleafTemplateEngine().render(this.eventController.showAddNewForm());
+        });
 
+        post("/add-event", (request, response) -> {
+            return new ThymeleafTemplateEngine().render(this.eventController.createNewEvent(request, response));
+        });
+
+        get("/event-created", (request, response) -> {
+            return new ThymeleafTemplateEngine().render(this.eventController.addedEvent());
+        });
+
+        enableDebugScreen();
 
     }
 
@@ -53,10 +67,9 @@ public class SocialLunch {
 
         //User newUser = new User("John", "Doe", "john@doe.com", "+3615425425", "mfwkmfkem","",(byte) 1,(byte) 0,null,null);
         Address newAdress = new Address("Hungary", "Budapest", "1111", "Csocsi u. 10. 1/5", "Home");
-        /*Place newPlace = new Place(newAdress, 112);
-        Timestamp date = new Timestamp(52534L);
-        Event newEvent = new Event(newUser, newPlace,"cool", date, "Első buli");
-        Event eventTwo = new Event(newUser, newPlace,"cool2", date, "Első buli2");*/
+        /*Timestamp date = new Timestamp(52534L);
+        Event newEvent = new Event(newUser, newAddress,"cool", date, "Első buli");
+        Event eventTwo = new Event(newUser, newAddress,"cool2", date, "Első buli2");*/
 
         EntityTransaction transaction = this.entityManager.getTransaction();
         transaction.begin();
