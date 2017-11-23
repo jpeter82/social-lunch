@@ -1,20 +1,16 @@
 package com.peanuts.sociallunch;
-//import spark.template.thymeleaf.ThymeleafTemplateEngine;
+
 
 import javax.persistence.*;
-
-import static spark.Spark.*;
-
 import com.peanuts.sociallunch.dao.*;
 import com.peanuts.sociallunch.logic.*;
 import com.peanuts.sociallunch.model.*;
-
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
-
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 
@@ -30,10 +26,12 @@ public class SocialLunch {
 
     public SocialLunch(EntityManager entityManager, AddressController addressController,
                        EventController eventController, ReviewController reviewController) {
+
         this.entityManager = entityManager;
         this.addressController = addressController;
         this.eventController = eventController;
         this.reviewController = reviewController;
+
     }
 
     public void start() {
@@ -46,47 +44,19 @@ public class SocialLunch {
         staticFileLocation("/public");
         port(8888);
 
-        get("/", (req, res) -> {
-            return new ThymeleafTemplateEngine().render(this.eventController.getAllEvents());
-        });
 
-        get("/event", (req, res) -> {
-            long eventId = Long.parseLong(req.queryParams("eid"));
-            return new ThymeleafTemplateEngine().render(this.eventController.findEventById(eventId));
-        });
-
-        get("/address", (req, res) -> {
-            return new ThymeleafTemplateEngine().render(this.addressController.getAllAddresses());
-        });
-        get("/review", (req, res) -> {
-            return new ThymeleafTemplateEngine().render(this.reviewController.getAllReview());
-        });
-        post("/review2", (req, res) -> {
-
-            long user = 1L;
-            long event = 1L;
-            int rating = Integer.parseInt(req.queryParams("rating"));
-
-            return new ThymeleafTemplateEngine().render(this.reviewController.writeReview(user, event, rating));
-        });
-
-
-        get("/add-event", (req, res) -> {
-            return new ThymeleafTemplateEngine().render(this.eventController.showAddNewForm());
-        });
-
-        post("/add-event", (request, response) -> {
-            return new ThymeleafTemplateEngine().render(this.eventController.createNewEvent(request, response));
-        });
-
-        get("/event-created", (request, response) -> {
-            return new ThymeleafTemplateEngine().render(this.eventController.addedEvent());
-        });
+        get(Path.INDEX, this.eventController.getAllEvents);
+        get(Path.EVENT, this.eventController.findEventById);
+        get(Path.ADDRESS, this.addressController.getAllAddresses);
+        get(Path.REVIEW, this.reviewController.getAllReview);
+        post(Path.REVIEW2, this.reviewController.writeReview);
+        get(Path.ADD_EVENT, this.eventController.showAddNewForm);
+        post(Path.ADD_EVENT, this.eventController.createNewEvent);
+        get(Path.EVENT_CREATED, this.eventController.addedEvent);
 
         enableDebugScreen();
 
     }
-
 
     public void populateDB() {
 
