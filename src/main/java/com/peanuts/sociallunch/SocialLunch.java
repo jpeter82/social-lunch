@@ -5,10 +5,10 @@ import javax.persistence.*;
 
 import static spark.Spark.*;
 
-import com.peanuts.sociallunch.dao.EventDao;
-import com.peanuts.sociallunch.logic.AddressController;
-import com.peanuts.sociallunch.logic.EventController;
+import com.peanuts.sociallunch.dao.*;
+import com.peanuts.sociallunch.logic.*;
 import com.peanuts.sociallunch.model.*;
+
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import java.sql.Date;
@@ -22,16 +22,20 @@ public class SocialLunch {
 
     private EntityManager entityManager;
     private AddressController addressController;
+    private ReviewController reviewController;
     private EventController eventController;
+
 
     public SocialLunch() {
     }
 
+
     public SocialLunch(EntityManager entityManager, AddressController addressController,
-                       EventController eventController) {
+                       EventController eventController, ReviewController reviewController) {
         this.entityManager = entityManager;
         this.addressController = addressController;
         this.eventController = eventController;
+        this.reviewController = reviewController;
     }
 
     public void start() {
@@ -56,6 +60,20 @@ public class SocialLunch {
         get("/address", (req, res) -> {
             return new ThymeleafTemplateEngine().render(this.addressController.getAllAddresses());
         });
+        get("/review", (req, res) -> {
+            return new ThymeleafTemplateEngine().render(this.reviewController.getAllReview());
+        });
+        post("/review2", (req, res) -> {
+//
+//           String user =  req.queryParams("user");
+//           String event =  req.queryParams("event");
+            String user = "1";
+            String event = "1";
+           String rating =  req.queryParams("rating");
+
+            return new ThymeleafTemplateEngine().render(this.reviewController.writeReview(user,event,rating));
+        });
+
 
         enableDebugScreen();
 
@@ -63,7 +81,7 @@ public class SocialLunch {
     }
 
 
-    public void populateDB () {
+    public void populateDB() {
 
         long time = System.currentTimeMillis();
         java.sql.Timestamp date = new java.sql.Timestamp(time);
@@ -120,6 +138,7 @@ public class SocialLunch {
         
         Review review = new Review(newUser, newUser2, event1, 7);
         Review review2 = new Review(newUser2, newUser, event2, 6);
+
 
         EntityTransaction transaction = this.entityManager.getTransaction();
         transaction.begin();
