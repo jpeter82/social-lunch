@@ -3,7 +3,7 @@ package com.peanuts.sociallunch.model;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -25,8 +25,12 @@ public class Event {
     @ManyToOne
     private User host;
 
+    @Column(name = "capacity")
+    private Integer capacity;
+
     @ManyToOne
-    private Place place;
+    // Address here @ManyToOne
+    private Address address;
 
     @Column(name = "description")
     private String description;
@@ -38,7 +42,7 @@ public class Event {
     private List<Review> reviewList;
 
     @Column(name = "date")
-    private Timestamp date;
+    private Date date;
 
     @CreationTimestamp
     @Column(name = "created")
@@ -51,13 +55,25 @@ public class Event {
     public Event() {
     }
 
-    public Event(User host, Place place, String description,  Timestamp date, String name, String picture) {
+
+    public Event(User host, Address address, String description,  Date date, String title, String picture) {
         this.host = host;
-        this.place = place;
+        this.address = address;
         this.description = description;
         this.date = date;
-        this.title = name;
         this.picture = picture;
+        this.title = title;
+    }
+
+    public Event(String title, User host, Integer capacity, Address address, 
+                 String description, Date date, Timestamp createdDate) {
+        this.title = title;
+        this.host = host;
+        this.capacity = capacity;
+        this.address = address;
+        this.description = description;
+        this.date = date;
+        this.createdDate = createdDate;
     }
 
     public long getId() {
@@ -68,8 +84,8 @@ public class Event {
         return host;
     }
 
-    public Place getPlace() {
-        return place;
+    public Address getAddress() {
+        return address;
     }
 
     public String getDescription() {
@@ -80,7 +96,7 @@ public class Event {
         return tagList;
     }
 
-    public Timestamp getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -88,8 +104,8 @@ public class Event {
         this.host = host;
     }
 
-    public void setPlace(Place place) {
-        this.place = place;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public void setDescription(String description) {
@@ -100,7 +116,7 @@ public class Event {
         this.tagList = tag;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -130,6 +146,14 @@ public class Event {
 
     public Timestamp getCreatedDate() {
         return createdDate;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
     }
 
     public String getPicture() {

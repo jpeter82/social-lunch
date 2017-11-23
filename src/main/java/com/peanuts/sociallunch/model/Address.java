@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getAll", query = "FROM Address")
+        @NamedQuery(name = "getAll", query = "SELECT a FROM Address a")
 })
 @Table(name="addresses")
 public class Address {
@@ -41,10 +41,6 @@ public class Address {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCountry() {

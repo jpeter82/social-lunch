@@ -9,17 +9,22 @@ import java.util.List;
 
 public class EventDao {
 
-    private EntityManager em;
+    private EntityManager entityManager;
 
-    public EventDao(EntityManager em) {
-        this.em = em;
+    public EventDao(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+  
+    public void save(Event event) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(event);
+        entityManager.getTransaction().commit();
     }
 
     public List<Event> getAll() {
 
         List<Event> events = em.createNamedQuery("getAllEvents", Event.class).getResultList();
         return events;
-
     }
 
     public Event findEventById(String eventId) {
@@ -31,4 +36,5 @@ public class EventDao {
 
         return eventById;
     }
+
 }

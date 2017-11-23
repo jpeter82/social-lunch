@@ -6,13 +6,12 @@
 
     <persistence-unit name="socialLunch" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <!--<class>com.peanuts.sociallunch.model.entities.Address</class>
-        <class>com.peanuts.sociallunch.model.entities.Event</class>
-        <class>com.peanuts.sociallunch.model.entities.Place</class>
-        <class>com.peanuts.sociallunch.model.entities.Reservation</class>
-        <class>com.peanuts.sociallunch.model.entities.Review</class>
-        <class>com.peanuts.sociallunch.model.entities.Tag</class>
-        <class>com.peanuts.sociallunch.model.entities.User</class>-->
+        <class>com.peanuts.sociallunch.model.Address</class>
+        <class>com.peanuts.sociallunch.model.Event</class>
+        <class>com.peanuts.sociallunch.model.Reservation</class>
+        <class>com.peanuts.sociallunch.model.Review</class>
+        <class>com.peanuts.sociallunch.model.Tag</class>
+        <class>com.peanuts.sociallunch.model.User</class>
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
@@ -26,7 +25,7 @@
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sociallunchdb"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
-            <property name="javax.persistence.jdbc.password" value="jelszo24"/>
+            <property name="javax.persistence.jdbc.password" value="postgres"/>
             <!-- <property name="javax.persistence.sql-load-script-source" value="insert.sql"/> -->
         </properties>
     </persistence-unit>

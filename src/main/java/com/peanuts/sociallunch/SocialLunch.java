@@ -25,10 +25,8 @@ public class SocialLunch {
     private ReviewController reviewController;
     private EventController eventController;
 
-
     public SocialLunch() {
     }
-
 
     public SocialLunch(EntityManager entityManager, AddressController addressController,
                        EventController eventController, ReviewController reviewController) {
@@ -75,8 +73,19 @@ public class SocialLunch {
         });
 
 
-        enableDebugScreen();
+        get("/add-event", (req, res) -> {
+            return new ThymeleafTemplateEngine().render(this.eventController.showAddNewForm());
+        });
 
+        post("/add-event", (request, response) -> {
+            return new ThymeleafTemplateEngine().render(this.eventController.createNewEvent(request, response));
+        });
+
+        get("/event-created", (request, response) -> {
+            return new ThymeleafTemplateEngine().render(this.eventController.addedEvent());
+        });
+
+        enableDebugScreen();
 
     }
 
@@ -138,7 +147,6 @@ public class SocialLunch {
         
         Review review = new Review(newUser, newUser2, event1, 7);
         Review review2 = new Review(newUser2, newUser, event2, 6);
-
 
         EntityTransaction transaction = this.entityManager.getTransaction();
         transaction.begin();
