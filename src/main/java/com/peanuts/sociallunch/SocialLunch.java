@@ -119,10 +119,6 @@ public class SocialLunch {
         Address newAdress2 = new Address("HUN", "Bud", "Kiraly",
                 "utca", "11");
 
-        /*Address newPlace = new Place(newAdress, 112);
-        Address newPlace2 = new Place(newAdress2, 110);
-        Address newPlace3 = new Place(newAdress2, 8);*/
-
         Event event1 = new Event(newUser, newAdress2, lorem, date, "Let's eat",
                 "bb.jpg");
         Event event2 = new Event(newUser2, newAdress2, lorem, date, "Happy :)",

@@ -53,54 +53,46 @@
     <div th:replace="header :: navbar-bottom"></div>
     <div class="android-content mdl-layout__content">
         <a name="top"></a>
-        <div class="android-be-together-section mdl-typography--text-center">
-            <div class="logo-font android-slogan">
-                <div class="sl-slogan">be together. let's talk to each other.
-                </div>
-            </div>
-            <div class="logo-font android-sub-slogan">
-                <span class="sl-sub-slogan">
-            welcome to Social
-                <span style="position: relative; top: 3px;">
-                    <i class="material-icons">people_outline</i>
-                </span>
-                Lunch be yourself. do your thing. see what's going on.
-                </span>
-            </div>
-        </div>
-        <div class="android-more-section">
-            <div class="android-section-title mdl-typography--display-1-color-contrast">More events from our Friends
-            </div>
-            <div class="android-card-container mdl-grid">
 
-                <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp"
-                     th:each="event,iterStat : ${events}">
-                    <div class="mdl-card__media">
-                        <img th:attr="src='/images/' + ${event.picture}">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h4 class="mdl-card__title-text" th:text="${event.title}"></h4>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead"
-                      th:text="${event.description}">
-                </span>
-                        <br><br>
-                        <!--<a class="mdl-typography&#45;&#45;font-light mdl-typography&#45;&#45;subhead custom-link"
-                                   th:text="'Host: ' + ${event.host.firstName} + ' ' + ${event.host.lastName}"
-                                   th:href="@{~/host(hid=${event.id})}">host link</a>-->
-                        <!--<p th:text="${event.host.firstName}">ide jön a place neve</p>-->
-                    </div>
-                    <div class="mdl-card__actions">
-                        <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase"
-                           th:href="@{~/event(eid=${event.id})}">
-                            Event details
-                            <i class="material-icons">chevron_right</i>
-                        </a>
-                    </div>
+        <div class="android-more-section mdl-grid">
+            <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
+                <div class="mdl-card__title">
+                    <h4 class="mdl-card__title-text" >Create new event</h4>
+                </div>
+                <div class="mdl-card__supporting-text">
+        <form action="/add-event" method="post">
+
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" name="event-title" id="ne1">
+                <label class="mdl-textfield__label" for="ne1">Title</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" name="event-capacity" id="ne2">
+                <label class="mdl-textfield__label" for="ne2">Event capacity</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" name="event-date" id="ne3">
+                <label class="mdl-textfield__label" for="ne3">Date</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" name="event-place" id="ne4">
+                <label class="mdl-textfield__label" for="ne4">Place</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" rows="4" type="text" name="event-description" id="ne5">
+                <label class="mdl-textfield__label" for="ne5">Description</label>
+            </div>
+
+            <!-- Raised button -->
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised block">
+                Create event
+            </button>
+
+        </form>
                 </div>
             </div>
         </div>
+
 
         <footer class="android-footer mdl-mega-footer">
             <div class="mdl-mega-footer--top-section">
