@@ -5,6 +5,7 @@ import com.peanuts.sociallunch.dao.AddressDao;
 import com.peanuts.sociallunch.dao.EventDao;
 import com.peanuts.sociallunch.model.Address;
 import com.peanuts.sociallunch.model.Event;
+import com.peanuts.sociallunch.model.User;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -36,6 +37,7 @@ public class EventController {
 
     public ModelAndView createNewEvent(Request request, Response response) {
 
+
         String title = request.queryParams("event-title");
         Integer capacity = Integer.parseInt(request.queryParams("event-capacity"));
         SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -48,6 +50,11 @@ public class EventController {
         }
         Address address = new Address("Hungary", "Budapest", "1111", "Some street 43. 4/2", "Home");
         String description = request.queryParams("event-description");
+        User user = new User("Jee", "Pa",
+                "lama23@gi.com", "200000", "valami",
+                "2imgfilename", (byte) 1,(byte) 0,null,
+                null);
+
 
         if (true) {
             Event newEvent = new Event();
@@ -55,7 +62,7 @@ public class EventController {
             newEvent.setCapacity(capacity);
             newEvent.setDate(datetime);
             newEvent.setDescription(description);
-
+            newEvent.setHost(user);
             eventDao.save(newEvent);
             response.redirect("/event-created");
         }
@@ -67,13 +74,6 @@ public class EventController {
     public ModelAndView addedEvent() {
         Map params = new HashMap<>();
         return new ModelAndView(params,"/event-added");
-    }
-
-
-    private EventDao eventDao;
-
-    public EventController(EventDao evetDao) {
-        this.eventDao = evetDao;
     }
 
     public ModelAndView getAllEvents() {
