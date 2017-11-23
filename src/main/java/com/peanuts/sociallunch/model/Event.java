@@ -9,7 +9,8 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getAllEvents", query = "FROM Event")
+        @NamedQuery(name = "getAllEvents", query = "FROM Event"),
+        @NamedQuery(name = "findEventById" , query ="FROM Event WHERE id=:id" )
 })
 @Table(name="events")
 public class Event {
