@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add new event</title>
+</head>
+<body>
+<h2>Add new event</h2>
+<form action="/add-event" method="post">
+    <div>
+        <label for="event-title">Title:</label>
+        <input id="event-title" name="event-title" type="text">
+    </div>
+    <div>
+        <label for="event-capacity">Capacity:</label>
+        <input id="event-capacity" name="event-capacity" type="text">
+    </div>
+    <div>
+        <label for="event-date">Date:</label>
+        <input id="event-date" name="event-date" type="text">
+    </div>
+    <div>
+        <label for="event-place">Place:</label>
+        <input id ="event-place" name="event-place" type="text">
+    </div>
+    <div>
+        <label for="event-description">Description:</label>
+        <textarea id="event-description" name="event-description" cols="30" rows="10"></textarea>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
