@@ -66,7 +66,7 @@ public class EventController {
             newEvent.setDescription(description);
             newEvent.setHost(null);
             eventDao.save(newEvent);
-            response.redirect("/event-created");
+            //response.redirect("/event-created");
         }
 
         Map params = new HashMap<>();
