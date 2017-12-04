@@ -24,8 +24,8 @@ public class EventDao {
         return eventRepository.findAll();
     }
 
-    public Event findEventById(long eventId) {
-        return eventRepository.findOne(eventId);
+    public Event findEventById(String eventId) {
+        Long eventIdLong = Long.valueOf(eventId);
+        return eventRepository.findOne(eventIdLong);
     }
-
 }
