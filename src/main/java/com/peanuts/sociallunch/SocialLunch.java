@@ -16,7 +16,7 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class SocialLunch {
 
-    private EntityManager entityManager;
+    /*private EntityManager entityManager;
     private AddressController addressController;
     private ReviewController reviewController;
     private EventController eventController;
@@ -57,7 +57,7 @@ public class SocialLunch {
         enableDebugScreen();
 
     }
-
+*/
     public void populateDB() {
 
         long time = System.currentTimeMillis();

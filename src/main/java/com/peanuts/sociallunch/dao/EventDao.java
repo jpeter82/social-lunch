@@ -2,39 +2,30 @@ package com.peanuts.sociallunch.dao;
 
 import com.peanuts.sociallunch.model.Address;
 import com.peanuts.sociallunch.model.Event;
+import com.peanuts.sociallunch.repository.EventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
-
+@Service
 public class EventDao {
 
-    private EntityManager entityManager;
-
-    public EventDao(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    @Autowired
+    private EventRepository eventRepository;
   
     public void save(Event event) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(event);
-        entityManager.getTransaction().commit();
+        eventRepository.save(event);
     }
 
     public List<Event> getAll() {
-
-        List<Event> events = entityManager.createNamedQuery("getAllEvents", Event.class).getResultList();
-        return events;
+        return eventRepository.findAll();
     }
 
     public Event findEventById(long eventId) {
-
-        Query eventQuery = entityManager.createNamedQuery("findEventById", Event.class).setParameter("id", eventId);
-        List<Event> result = eventQuery.getResultList();
-        Event event = result.get(0);
-
-        return event;
+        return eventRepository.findOne(eventId);
     }
 
 }

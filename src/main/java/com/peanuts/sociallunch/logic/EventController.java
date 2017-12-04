@@ -7,10 +7,6 @@ import com.peanuts.sociallunch.model.Address;
 import com.peanuts.sociallunch.model.Event;
 import com.peanuts.sociallunch.model.User;
 import com.peanuts.sociallunch.util.ViewUtil;
-import spark.ModelAndView;
-import spark.Request;
-import spark.Response;
-import spark.Route;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,6 +23,7 @@ public class EventController {
         this.eventDao = eventDao;
         this.userDao = userDao;
     }
+/*
 
     public Route getAllEvents = (Request request, Response response) -> {
         List<Event> result = eventDao.getAll();
@@ -87,5 +84,6 @@ public class EventController {
 
         return ViewUtil.render(request, params, "event");
     };
+*/
 
 }

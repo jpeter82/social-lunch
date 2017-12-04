@@ -6,11 +6,6 @@ import com.peanuts.sociallunch.model.Event;
 import com.peanuts.sociallunch.model.Review;
 import com.peanuts.sociallunch.model.User;
 import com.peanuts.sociallunch.util.ViewUtil;
-import spark.ModelAndView;
-import spark.Request;
-import spark.Response;
-import spark.Route;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +21,7 @@ public class ReviewController {
         this.userDao = userDao;
     }
 
-    public Route getAllReview = (Request request, Response response) -> ViewUtil.render(request, new HashMap(),"review");
+    /*public Route getAllReview = (Request request, Response response) -> ViewUtil.render(request, new HashMap(),"review");
 
     public Route writeReview = (Request request, Response response) -> {
 
@@ -45,5 +40,5 @@ public class ReviewController {
         Map params = new HashMap<>();
         return ViewUtil.render(request, params,"address");
     };
-
+*/
 }

@@ -1,12 +1,17 @@
 package com.peanuts.sociallunch;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class App {
 
     public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
 
-        DIContainer cont = new DIContainer();
+        /*DIContainer cont = new DIContainer();
         SocialLunch app = cont.init();
-        app.start();
+        app.start();*/
 
     }
 
