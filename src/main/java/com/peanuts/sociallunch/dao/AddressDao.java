@@ -1,23 +1,29 @@
 package com.peanuts.sociallunch.dao;
 
 import com.peanuts.sociallunch.model.Address;
+import com.peanuts.sociallunch.repository.AddressRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
+@Service
 public class AddressDao {
 
-    private EntityManager em;
+    @Autowired
+    private AddressRepository addressRepository;
 
-    public AddressDao(EntityManager em) {
-        this.em = em;
+    public void saveAddress(Address address) {
+        addressRepository.save(address);
     }
 
     public List<Address> getAll() {
+        return addressRepository.findAll();
+    }
 
-        List<Address> addresses = em.createNamedQuery("getAll", Address.class).getResultList();
-        return addresses;
-
+    public  Address findById(long id) {
+        return addressRepository.findOne(id);
     }
 
 

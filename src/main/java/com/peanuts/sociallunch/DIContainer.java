@@ -15,14 +15,14 @@ public class DIContainer {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("socialLunch");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        AddressDao addressDao = new AddressDao(entityManager);
-        ReviewDao reviewDao= new ReviewDao(entityManager);
-        UserDao userDao = new UserDao(entityManager);
+        //AddressDao addressDao = new AddressDao(entityManager);
+        //ReviewDao reviewDao= new ReviewDao(entityManager);
+        //UserDao userDao = new UserDao(entityManager);
         //EventDao eventDao = new EventDao(entityManager);
 
-        AddressController addressController = new AddressController(addressDao);
+        //AddressController addressController = new AddressController(addressDao);
         //EventController eventController = new EventController(eventDao, userDao);
-        ReviewController reviewController = new ReviewController(reviewDao, userDao);
+        //ReviewController reviewController = new ReviewController(reviewDao, userDao);
 
         /*SocialLunch socialLunch = new SocialLunch(entityManager, addressController,
                 eventController, reviewController);*/
