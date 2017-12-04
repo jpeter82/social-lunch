@@ -1,4 +1,5 @@
-<!doctype html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--
   Material Design Lite
   Copyright 2015 Google Inc. All rights reserved.
@@ -19,22 +20,23 @@
 -->
 
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en" data-framework="intercoolerjs" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Introducing Lollipop, a sweet new take on Android." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
     <title>Social Lunch</title>
 
     <!-- Page styles -->
     <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/main.css">
+          href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/main.css" />
     <style>
         #view-source {
             position: fixed;
@@ -76,7 +78,7 @@
                 <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp"
                      th:each="event,iterStat : ${events}">
                     <div class="mdl-card__media">
-                        <img th:attr="src='/images/' + ${event.picture}">
+                        <img th:attr="src='/images/' + ${event.picture}" />
                     </div>
                     <div class="mdl-card__title">
                         <h4 class="mdl-card__title-text" th:text="${event.title}"></h4>
@@ -85,7 +87,7 @@
                 <span class="mdl-typography--font-light mdl-typography--subhead"
                       th:text="${event.description}">
                 </span>
-                        <br><br>
+                        <br /><br />
                         <!--<a class="mdl-typography&#45;&#45;font-light mdl-typography&#45;&#45;subhead custom-link"
                                    th:text="'Host: ' + ${event.host.firstName} + ' ' + ${event.host.lastName}"
                                    th:href="@{~/host(hid=${event.id})}">host link</a>-->

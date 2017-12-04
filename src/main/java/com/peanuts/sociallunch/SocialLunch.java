@@ -5,13 +5,9 @@ import javax.persistence.*;
 import com.peanuts.sociallunch.dao.*;
 import com.peanuts.sociallunch.logic.*;
 import com.peanuts.sociallunch.model.*;
-import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-
-import static spark.Spark.*;
-import static spark.debug.DebugScreen.enableDebugScreen;
 
 
 public class SocialLunch {
@@ -58,7 +54,7 @@ public class SocialLunch {
 
     }
 */
-    public void populateDB() {
+    /*public void populateDB() {
 
         long time = System.currentTimeMillis();
         Timestamp date = new Timestamp(time);
@@ -133,6 +129,6 @@ public class SocialLunch {
         this.entityManager.persist(reservation);
         this.entityManager.persist(reservation2);
         transaction.commit();
-    }
+    }*/
 
 }
