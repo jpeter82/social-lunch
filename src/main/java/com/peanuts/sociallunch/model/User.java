@@ -7,6 +7,8 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
+import static com.peanuts.sociallunch.util.EncryptBean.encryptBean;
+
 
 @Entity
 @Table(name = "users")
@@ -71,6 +73,11 @@ public class User {
         this.isAdmin = isAdmin;
         this.givenReviewList = givenReviewList;
         this.receivedReviewList = receivedReviewList;
+    }
+
+
+    public void encryptPassword() {
+        this.password = encryptBean.encode(this.password);
     }
 
     public long getId() {
