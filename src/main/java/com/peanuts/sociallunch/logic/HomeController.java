@@ -4,9 +4,9 @@ import com.peanuts.sociallunch.dao.EventDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -23,8 +23,10 @@ public class HomeController {
     @RequestMapping(value = "/event", method = RequestMethod.GET)
     public String showEvent(
             Model model,
-            @RequestParam(value = "eid", required = true) String eventId
+            @RequestParam(value = "eid", required = true) String eventId,
+            HttpSession session
             ) {
+        System.out.println("Session ID: " + session.getId());
         model.addAttribute("event", eventDao.findEventById(eventId));
         return "event";
     }
