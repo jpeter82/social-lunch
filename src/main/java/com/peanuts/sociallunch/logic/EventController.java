@@ -3,18 +3,20 @@ package com.peanuts.sociallunch.logic;
 
 import com.peanuts.sociallunch.dao.EventDao;
 import com.peanuts.sociallunch.dao.UserDao;
-import com.peanuts.sociallunch.model.Address;
 import com.peanuts.sociallunch.model.Event;
-import com.peanuts.sociallunch.model.User;
-import com.peanuts.sociallunch.util.ViewUtil;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.peanuts.sociallunch.util.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+@Controller
 public class EventController {
+
+    @Autowired
+    private EventService eventService;
 
     private EventDao eventDao;
     private UserDao userDao;
@@ -22,6 +24,23 @@ public class EventController {
     public EventController(EventDao eventDao, UserDao userDao) {
         this.eventDao = eventDao;
         this.userDao = userDao;
+    }
+
+    public String addEvent(Event event) {
+        eventService.saveEvent(event);
+        return "/";
+    }
+
+    @RequestMapping(value = "/add-event", method = RequestMethod.GET)
+    public String showNewEventForm(Model model) {
+        model.addAttribute("new-event", new Event());
+        return "new-event";
+    }
+
+    @RequestMapping(value = "/add-event", method = RequestMethod.POST)
+    public String addEventForm(@ModelAttribute Event event) {
+        addEvent(event);
+        return "redirect:/";
     }
 /*
 

@@ -18,39 +18,27 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Column(name = "title")
     private String title;
-
     @ManyToOne
     private User host;
-
     @Column(name = "capacity")
     private Integer capacity;
-
     @ManyToOne
-    // Address here @ManyToOne
     private Address address;
-
     @Column(name = "description")
     private String description;
-
     @ManyToMany
     private List<Tag> tagList;
-
     @OneToMany(mappedBy = "event")
     private List<Review> reviewList;
-
     @Column(name = "date")
     private Date date;
-
     @CreationTimestamp
     @Column(name = "created")
     private Timestamp createdDate;
-
     @Column(name = "picture")
     private String picture;
-
 
     public Event() {
     }
