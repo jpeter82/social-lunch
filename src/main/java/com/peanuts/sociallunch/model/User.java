@@ -27,6 +27,9 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
@@ -62,9 +65,10 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String phone, String password, String imageFileName, byte isActive, byte isAdmin, List<Review> givenReviewList, List<Review> receivedReviewList) {
+    public User(String firstName, String lastName, String username, String email, String phone, String password, String imageFileName, byte isActive, byte isAdmin, List<Review> givenReviewList, List<Review> receivedReviewList) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
         this.email = email;
         this.phone = phone;
         this.password = password;
@@ -98,6 +102,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
