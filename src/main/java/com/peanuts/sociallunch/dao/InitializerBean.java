@@ -19,15 +19,31 @@ public class InitializerBean {
 
     public InitializerBean(AddressDao addressDao, EventDao eventDao, UserDao userDao) {
 
-        User newUser = new User("Joe", "Smith", "notlamejohnsmith",
-                "lama@gi.com", "00000", "valami",
-                "imgfilename", (byte) 1,(byte) 0,null,
-                null, "otto");
+        User newUser = new User(
+                "Mark",
+                "Hello",
+                "valami@gmail.com",
+                "00000000",
+                "valami",
+                "imgfile",
+                (byte) 1,
+                (byte) 0,
+                "mark"
+        );
 
-        User newUser2 = new User("Joee", "Smith",
-                "lama@gi2.com", "00000", "valami",
-                "imgfilename", (byte) 1,(byte) 0,null,
-                null, "joe");
+
+        User newUser2 = new User(
+                "Joee",
+                "Smith",
+                "lama@gi2.com",
+                "00000",
+                "valami",
+                "imgfilename",
+                (byte) 1,
+                (byte) 0,
+                null,
+                null,
+                "joe");
 
         userDao.saveUser(newUser);
         userDao.saveUser(newUser2);

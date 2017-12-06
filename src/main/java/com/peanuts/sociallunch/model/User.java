@@ -119,6 +119,27 @@ public class User {
                 String imageFileName,
                 byte isActive,
                 byte isAdmin,
+                String userName) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.imageFileName = imageFileName;
+        this.isActive = isActive;
+        this.isAdmin = isAdmin;
+        this.userName = userName;
+    }
+
+    public User(String firstName,
+                String lastName,
+                String email,
+                String phone,
+                String password,
+                String imageFileName,
+                byte isActive,
+                byte isAdmin,
                 List<Review> givenReviewList,
                 List<Review> receivedReviewList,
                 String userName) {
