@@ -4,6 +4,7 @@ import com.peanuts.sociallunch.model.User;
 import com.peanuts.sociallunch.repository.UserRepository;
 //import com.peanuts.sociallunch.util.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,13 +19,11 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
-    }
-
-    public String addUser(User user) {
-        userRepository.save(user);
-        return "/";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -35,9 +34,14 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String addUserForm(@ModelAttribute User user) {
-        user.encryptPassword();
-        addUser(user);
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Model model) {
+        return "login";
     }
 
 }
