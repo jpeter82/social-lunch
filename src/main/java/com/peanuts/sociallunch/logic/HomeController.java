@@ -17,6 +17,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showIndex(Model model) {
         model.addAttribute("events", eventDao.getAll());
+        model.addAttribute("username", null);
         return "home/index";
     }
 

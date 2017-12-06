@@ -56,7 +56,7 @@ public class InitializerBean {
 
         userController.setCryptPass(newUser);
         userController.setCryptPass(newUser2);
-        
+
         userDao.saveUser(newUser);
         userDao.saveUser(newUser2);
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -44,8 +45,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
+    public String login(Model model, Principal principal) {
+        //String name = principal.getName();
+        //model.addAttribute("username", name);
         return "login";
     }
 
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    public String loginpost(Model model, Principal principal) {
+//        String name = principal.getName();
+//        model.addAttribute("username", name);
+//        System.out.println("model: " + model.toString());
+//        System.out.println("Ez a name: " + name);
+//        return "home/index";
+//    }
 }
