@@ -19,7 +19,7 @@ public class InitializerBean {
 
     public InitializerBean(AddressDao addressDao, EventDao eventDao, UserDao userDao) {
 
-        User newUser = new User("Joe", "Smith",
+        User newUser = new User("Joe", "Smith", "notlamejohnsmith",
                 "lama@gi.com", "00000", "valami",
                 "imgfilename", (byte) 1,(byte) 0,null,
                 null);
