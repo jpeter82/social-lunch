@@ -22,6 +22,10 @@ public class UserController {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    public void setCryptPass(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -34,7 +38,7 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String addUserForm(@ModelAttribute User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        setCryptPass(user);
         userRepository.save(user);
         return "redirect:/";
     }
