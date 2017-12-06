@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
         http
                 .authorizeRequests()
-                .antMatchers("/", "/event/**", "/css/**", "/images/**").permitAll()
+                .antMatchers("/", "/css/**", "/images/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -34,8 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
+        auth//.jdbcAuthentication().authoritiesByUsernameQuery();
                 .inMemoryAuthentication()
-                .withUser("user").password("ottootto").roles("USER");
+                .withUser("otto1").password("otto1").roles("USER");
+
+        auth//.jdbcAuthentication().authoritiesByUsernameQuery();
+                .inMemoryAuthentication()
+                .withUser("otto2").password("otto2").roles("USER");
     }
 }
