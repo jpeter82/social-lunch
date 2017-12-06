@@ -22,7 +22,7 @@ public class InitializerBean {
         User newUser = new User("Joe", "Smith",
                 "lama@gi.com", "00000", "valami",
                 "imgfilename", (byte) 1,(byte) 0,null,
-                null);
+                null, "otto");
 
         userDao.saveUser(newUser);
 

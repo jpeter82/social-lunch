@@ -57,10 +57,66 @@ public class User {
     @OneToMany(mappedBy = "receiver")
     private List<Review> receivedReviewList;
 
+    private String userName;
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public byte getIsActive() {
+        return isActive;
+    }
+
+    public byte getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setModifiedDate(Timestamp modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public List<Review> getGivenReviewList() {
+        return givenReviewList;
+    }
+
+    public void setGivenReviewList(List<Review> givenReviewList) {
+        this.givenReviewList = givenReviewList;
+    }
+
+    public List<Review> getReceivedReviewList() {
+        return receivedReviewList;
+    }
+
+    public void setReceivedReviewList(List<Review> receivedReviewList) {
+        this.receivedReviewList = receivedReviewList;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String phone, String password, String imageFileName, byte isActive, byte isAdmin, List<Review> givenReviewList, List<Review> receivedReviewList) {
+    public User(String firstName,
+                String lastName,
+                String email,
+                String phone,
+                String password,
+                String imageFileName,
+                byte isActive,
+                byte isAdmin,
+                List<Review> givenReviewList,
+                List<Review> receivedReviewList,
+                String userName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -71,6 +127,7 @@ public class User {
         this.isAdmin = isAdmin;
         this.givenReviewList = givenReviewList;
         this.receivedReviewList = receivedReviewList;
+        this.userName = userName;
     }
 
     public long getId() {
