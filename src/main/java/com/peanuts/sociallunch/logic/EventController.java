@@ -26,22 +26,22 @@ public class EventController {
         this.userDao = userDao;
     }
 
-    public String addEvent(Event event) {
+    public void addEvent(Event event) {
         eventService.saveEvent(event);
-        return "/";
     }
 
-    @RequestMapping(value = "/add-event", method = RequestMethod.GET)
+    @RequestMapping(value = "/addevent", method = RequestMethod.GET)
     public String showNewEventForm(Model model) {
-        model.addAttribute("new-event", new Event());
+        model.addAttribute("event", new Event());
         return "new-event";
     }
 
-    @RequestMapping(value = "/add-event", method = RequestMethod.POST)
+    @RequestMapping(value = "/addevent", method = RequestMethod.POST)
     public String addEventForm(@ModelAttribute Event event) {
         addEvent(event);
         return "redirect:/";
     }
+
 /*
 
     public Route getAllEvents = (Request request, Response response) -> {

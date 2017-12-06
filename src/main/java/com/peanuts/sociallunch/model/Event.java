@@ -1,6 +1,7 @@
 package com.peanuts.sociallunch.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -33,6 +34,7 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private List<Review> reviewList;
     @Column(name = "date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     @CreationTimestamp
     @Column(name = "created")
@@ -43,8 +45,14 @@ public class Event {
     public Event() {
     }
 
+    public Event(String title, Integer capacity, Address address, String description) {
+        this.title = title;
+        this.capacity = capacity;
+        this.address = address;
+        this.description = description;
+    }
 
-    public Event(User host, Address address, String description,  Date date, String title, String picture) {
+    public Event(User host, Address address, String description, Date date, String title, String picture) {
         this.host = host;
         this.address = address;
         this.description = description;

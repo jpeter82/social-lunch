@@ -60,26 +60,29 @@
                     <h4 class="mdl-card__title-text" >Create new event</h4>
                 </div>
                 <div class="mdl-card__supporting-text">
-        <form action="/add-event" method="post">
+
+        <form action="#" th:action="@{/addevent}" th:object="${event}" method="post">
 
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="event-title" id="ne1"/>
+                <input class="mdl-textfield__input" type="text" th:field="*{title}" id="ne1"/>
                 <label class="mdl-textfield__label" for="ne1">Title</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="event-capacity" id="ne2"/>
+                <input class="mdl-textfield__input" type="text" th:field="*{capacity}" id="ne2"/>
                 <label class="mdl-textfield__label" for="ne2">Event capacity</label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="event-date" id="ne3"/>
-                <label class="mdl-textfield__label" for="ne3">Date</label>
+            <div class="mdl-textfield mdl-js-textfield"><!-- ez itt lehet szopó lesz!!!!!-->
+                <input class="mdl-textfield__input" type="date" th:field="*{date}" id="ne3"/>
+                <!--<label class="mdl-textfield__label" for="ne3">Date</label>-->
             </div>
+            <!-- amíg nincs kész az osztály, addig ő kimarad!
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="event-place" id="ne4"/>
+                <input class="mdl-textfield__input" type="text" th:field="*{address}" id="ne4"/>
                 <label class="mdl-textfield__label" for="ne4">Place</label>
             </div>
+            -->
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" rows="4" type="text" name="event-description" id="ne5"/>
+                <input class="mdl-textfield__input" rows="4" type="text" th:field="*{description}" id="ne5"/>
                 <label class="mdl-textfield__label" for="ne5">Description</label>
             </div>
 
