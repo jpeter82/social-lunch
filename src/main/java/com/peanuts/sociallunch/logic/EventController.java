@@ -4,7 +4,8 @@ package com.peanuts.sociallunch.logic;
 import com.peanuts.sociallunch.dao.EventDao;
 import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.Event;
-import com.peanuts.sociallunch.util.EventService;
+//import com.peanuts.sociallunch.util.EventService;
+import com.peanuts.sociallunch.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class EventController {
 
     @Autowired
-    private EventService eventService;
+    private EventRepository eventRepository;
 
     private EventDao eventDao;
     private UserDao userDao;
@@ -27,7 +28,7 @@ public class EventController {
     }
 
     public void addEvent(Event event) {
-        eventService.saveEvent(event);
+        eventRepository.save(event);
     }
 
     @RequestMapping(value = "/addevent", method = RequestMethod.GET)

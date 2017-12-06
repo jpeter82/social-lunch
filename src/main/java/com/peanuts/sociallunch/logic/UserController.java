@@ -1,7 +1,8 @@
 package com.peanuts.sociallunch.logic;
 
 import com.peanuts.sociallunch.model.User;
-import com.peanuts.sociallunch.util.UserService;
+import com.peanuts.sociallunch.repository.UserRepository;
+//import com.peanuts.sociallunch.util.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +16,14 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    UserRepository userRepository;
 
     public List<User> getAllUsers() {
-        return userService.findAll();
+        return userRepository.findAll();
     }
 
     public String addUser(User user) {
-        userService.saveUser(user);
+        userRepository.save(user);
         return "/";
     }
 
