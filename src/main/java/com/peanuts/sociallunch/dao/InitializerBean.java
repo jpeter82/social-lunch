@@ -22,9 +22,15 @@ public class InitializerBean {
         User newUser = new User("Joe", "Smith", "notlamejohnsmith",
                 "lama@gi.com", "00000", "valami",
                 "imgfilename", (byte) 1,(byte) 0,null,
-                null);
+                null, "otto");
+
+        User newUser2 = new User("Joee", "Smith",
+                "lama@gi2.com", "00000", "valami",
+                "imgfilename", (byte) 1,(byte) 0,null,
+                null, "joe");
 
         userDao.saveUser(newUser);
+        userDao.saveUser(newUser2);
 
         Address newAdress = new Address("HUN", "Csobánka", "Csocsi",
                 "utca", "10");

@@ -68,6 +68,7 @@
                 <span class="mdl-typography--font-light mdl-typography--subhead"
                       th:text="${event.description}">
                 </span>
+                        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
                         <!--<br><br><a class="mdl-typography&#45;&#45;font-light mdl-typography&#45;&#45;subhead custom-link"-->
                                    <!--th:text="'Host: ' + ${event.host.firstName} + ' ' + ${event.host.lastName}"-->
                                    <!--th:href="@{~/host(hid=${event.id})}">host link</a>-->
