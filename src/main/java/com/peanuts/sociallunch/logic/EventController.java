@@ -7,11 +7,16 @@ import com.peanuts.sociallunch.model.Event;
 //import com.peanuts.sociallunch.util.EventService;
 import com.peanuts.sociallunch.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
 
 @Controller
 public class EventController {
@@ -32,13 +37,15 @@ public class EventController {
     }
 
     @RequestMapping(value = "/addevent", method = RequestMethod.GET)
-    public String showNewEventForm(Model model) {
+    public String showNewEventForm(Model model, HttpSession session) {
         model.addAttribute("event", new Event());
         return "new-event";
     }
 
     @RequestMapping(value = "/addevent", method = RequestMethod.POST)
-    public String addEventForm(@ModelAttribute Event event) {
+    public String addEventForm(@ModelAttribute Event event, HttpSession session) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        event.setHost(userDao.findByUsername(username));
         addEvent(event);
         return "redirect:/";
     }

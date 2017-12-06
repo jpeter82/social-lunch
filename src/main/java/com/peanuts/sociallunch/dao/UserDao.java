@@ -22,6 +22,10 @@ public class UserDao {
         return userRepository.findOne(id);
     }
 
+    public User findByUsername (String username) {
+        return userRepository.findUserByUsername(username);
+    }
+
 
 
 }

@@ -59,7 +59,8 @@ public class User {
     @OneToMany(mappedBy = "receiver")
     private List<Review> receivedReviewList;
 
-    private String userName;
+    @Column(name = "username")
+    private String username;
 
     public void setId(long id) {
         this.id = id;
@@ -71,6 +72,14 @@ public class User {
 
     public byte getIsAdmin() {
         return isAdmin;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setCreatedDate(Timestamp createdDate) {
@@ -97,14 +106,6 @@ public class User {
         this.receivedReviewList = receivedReviewList;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public User() {
     }
 
@@ -116,7 +117,7 @@ public class User {
                 String imageFileName,
                 byte isActive,
                 byte isAdmin,
-                String userName) {
+                String username) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -126,7 +127,7 @@ public class User {
         this.imageFileName = imageFileName;
         this.isActive = isActive;
         this.isAdmin = isAdmin;
-        this.userName = userName;
+        this.username = username;
     }
 
     public User(String firstName,
@@ -151,7 +152,7 @@ public class User {
         this.isAdmin = isAdmin;
         this.givenReviewList = givenReviewList;
         this.receivedReviewList = receivedReviewList;
-        this.userName = userName;
+        this.username = username;
     }
 
 
