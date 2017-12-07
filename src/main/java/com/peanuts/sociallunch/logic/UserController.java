@@ -1,5 +1,6 @@
 package com.peanuts.sociallunch.logic;
 
+import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.User;
 import com.peanuts.sociallunch.repository.UserRepository;
 //import com.peanuts.sociallunch.util.UserService;
@@ -15,15 +16,18 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    @Autowired
-    UserRepository userRepository;
+    private UserDao userDao;
+
+    public UserController(UserDao userDao){
+        this.userDao = userDao;
+    }
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userDao.findAll();
     }
 
     public String addUser(User user) {
-        userRepository.save(user);
+        userDao.saveUser(user);
         return "/";
     }
 

@@ -21,9 +21,6 @@ import java.security.Principal;
 @Controller
 public class EventController {
 
-    @Autowired
-    private EventRepository eventRepository;
-
     private EventDao eventDao;
     private UserDao userDao;
 
@@ -33,7 +30,7 @@ public class EventController {
     }
 
     public void addEvent(Event event) {
-        eventRepository.save(event);
+        eventDao.saveEvent(event);
     }
 
     @RequestMapping(value = "/addevent", method = RequestMethod.GET)
