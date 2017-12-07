@@ -71,7 +71,9 @@
             </div>
         </div>
         <div class="android-more-section">
-            <div class="android-section-title mdl-typography--display-1-color-contrast">More events from our Friends
+            <div class="android-section-title mdl-typography--display-1-color-contrast">
+                More events from our Friends
+                <p th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</p>
             </div>
             <div class="android-card-container mdl-grid">
 

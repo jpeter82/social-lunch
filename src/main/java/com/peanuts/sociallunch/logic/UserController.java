@@ -5,13 +5,16 @@ import com.peanuts.sociallunch.model.User;
 import com.peanuts.sociallunch.repository.UserRepository;
 //import com.peanuts.sociallunch.util.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
 
@@ -20,8 +23,10 @@ public class UserController {
 
     private UserDao userDao;
 
+
     public UserController(UserDao userDao){
         this.userDao = userDao;
+
     }
 
 
@@ -50,11 +55,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model, Principal principal) {
-        //String name = principal.getName();
-        //model.addAttribute("username", name);
+    public String login(Model model,
+                        @RequestParam(value = "logout", required = false) String logout) {
+        if (logout != null) {
+            model.addAttribute("message", "Logged out, see You soon.");
+        }
         return "login";
     }
-
 
 }

@@ -32,22 +32,26 @@
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Tags</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">About us</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase"
-                   href="/login">
+                   href="/login"
+                   th:unless="${username}">
                     Log in
                 </a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/registration">Sign up</a>
+                <form th:action="@{/logout}" th:if="${username}" method="post">
+                    <button class="mdl-navigation__link mdl-typography--text-uppercase logout"
+                            type="submit" value="Sign Out">Log out</button>
+                </form>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                   href="#"
+                   th:if="${username}"
+                   th:text="${username}">
+                    Hello!
+                </a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase"
                    href="/registration"
-                   th:if="${currentUser != null}"
-                   th:text="${currentUser.username}">Sign up</a>
-                <!--<div th:unless="${username == null}">-->
-                    <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase"-->
-                       <!--href="/login">-->
-                        <!--Log in-->
-                    <!--</a>-->
-                    <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="/registration">Sign up</a>-->
-                <!--</div>-->
-
+                   th:unless="${username}"
+                    >
+                    Sign up
+                </a>
             </nav>
         </div>
         <span class="android-mobile-title mdl-layout-title">
