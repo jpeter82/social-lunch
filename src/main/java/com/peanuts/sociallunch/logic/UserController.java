@@ -1,5 +1,6 @@
 package com.peanuts.sociallunch.logic;
 
+import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.User;
 import com.peanuts.sociallunch.repository.UserRepository;
 //import com.peanuts.sociallunch.util.UserService;
@@ -17,18 +18,30 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    @Autowired
-    UserRepository userRepository;
+    private UserDao userDao;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    public void setCryptPass(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    public UserController(UserDao userDao){
+        this.userDao = userDao;
     }
 
+
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userDao.findAll();
+    }
+
+    public String addUser(User user) {
+        userDao.saveUser(user);
+        return "/";
+//     @Autowired
+//     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+//     public void setCryptPass(User user) {
+//         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//     }
+
+//     public List<User> getAllUsers() {
+//         return userRepository.findAll();
+// >>>>>>> spring
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)

@@ -22,11 +22,9 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/event", method = RequestMethod.GET)
-    public String showEvent(
-            Model model,
-            @RequestParam(value = "eid", required = true) String eventId,
-            HttpSession session
-            ) {
+    public String showEvent(Model model,
+                            @RequestParam(value = "eid", required = true) String eventId,
+                            HttpSession session) {
         System.out.println("Session ID: " + session.getId());
         model.addAttribute("event", eventDao.findEventById(eventId));
         return "event";
