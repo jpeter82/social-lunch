@@ -20,46 +20,35 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Column(name = "first_name")
     private String firstName;
-
     @Column(name = "last_name")
     private String lastName;
-
     @Column(name = "email", nullable = false, unique = true)
     private String email;
-
     @Column
     private String phone;
-
     @Column(name = "password")//, nullable = false)
     private String password;
-
     @Column(name = "image_file_name")
     private String imageFileName;
-
     @Column(name = "is_active", columnDefinition = "smallint default 1")
     private byte isActive;
-
     @Column(name = "is_admin", columnDefinition = "smallint default 0")
     private byte isAdmin;
-
     @CreationTimestamp
     @Column(name = "created")
     private Timestamp createdDate;
-
     @UpdateTimestamp
     @Column(name = "modified")
     private Timestamp modifiedDate;
-
     @OneToMany(mappedBy = "giver")
     private List<Review> givenReviewList;
-
     @OneToMany(mappedBy = "receiver")
     private List<Review> receivedReviewList;
+    @Column(name = "username")
+    private String username;
 
-    private String userName;
 
     public void setId(long id) {
         this.id = id;
@@ -71,6 +60,14 @@ public class User {
 
     public byte getIsAdmin() {
         return isAdmin;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setCreatedDate(Timestamp createdDate) {
@@ -97,14 +94,6 @@ public class User {
         this.receivedReviewList = receivedReviewList;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public User() {
     }
 
@@ -116,7 +105,7 @@ public class User {
                 String imageFileName,
                 byte isActive,
                 byte isAdmin,
-                String userName) {
+                String username) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -126,7 +115,7 @@ public class User {
         this.imageFileName = imageFileName;
         this.isActive = isActive;
         this.isAdmin = isAdmin;
-        this.userName = userName;
+        this.username = username;
     }
 
     public User(String firstName,
@@ -139,7 +128,7 @@ public class User {
                 byte isAdmin,
                 List<Review> givenReviewList,
                 List<Review> receivedReviewList,
-                String userName) {
+                String username) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -151,7 +140,7 @@ public class User {
         this.isAdmin = isAdmin;
         this.givenReviewList = givenReviewList;
         this.receivedReviewList = receivedReviewList;
-        this.userName = userName;
+        this.username = username;
     }
 
 

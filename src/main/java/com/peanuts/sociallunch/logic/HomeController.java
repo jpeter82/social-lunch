@@ -28,12 +28,11 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/event", method = RequestMethod.GET)
-    public String showEvent(
-            Model model,
-            @RequestParam(value = "eid", required = true) String eventId,
-            HttpSession session,
-            Principal principal
-            ) {
+
+    public String showEvent(Model model,
+                            @RequestParam(value = "eid", required = true) String eventId,
+                            HttpSession session) {
+
         System.out.println("Session ID: " + session.getId());
         String name = principal.getName();
         System.out.println("Ez a user neve: " + name);
