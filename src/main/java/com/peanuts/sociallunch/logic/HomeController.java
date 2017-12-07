@@ -2,6 +2,8 @@ package com.peanuts.sociallunch.logic;
 
 import com.peanuts.sociallunch.dao.EventDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +20,10 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showIndex(Model model) {
         model.addAttribute("events", eventDao.getAll());
-        model.addAttribute("username", null);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.getName() != "anonymousUser") {
+            model.addAttribute("username", auth.getName());
+        }
         return "home/index";
     }
 

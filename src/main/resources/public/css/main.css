@@ -9,7 +9,7 @@
     display: block;
 }
 
-#logout {
+.logout {
     border: none;
     cursor: pointer;
 }
