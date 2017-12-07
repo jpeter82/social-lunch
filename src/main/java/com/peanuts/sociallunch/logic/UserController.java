@@ -32,16 +32,8 @@ public class UserController {
     public String addUser(User user) {
         userDao.saveUser(user);
         return "/";
-//     @Autowired
-//     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-//     public void setCryptPass(User user) {
-//         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//     }
 
-//     public List<User> getAllUsers() {
-//         return userRepository.findAll();
-// >>>>>>> spring
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -52,8 +44,8 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String addUserForm(@ModelAttribute User user) {
-        setCryptPass(user);
-        userRepository.save(user);
+       user.encryptPassword();
+       addUser(user);
         return "redirect:/";
     }
 
@@ -64,12 +56,5 @@ public class UserController {
         return "login";
     }
 
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String loginpost(Model model, Principal principal) {
-//        String name = principal.getName();
-//        model.addAttribute("username", name);
-//        System.out.println("model: " + model.toString());
-//        System.out.println("Ez a name: " + name);
-//        return "home/index";
-//    }
+
 }
