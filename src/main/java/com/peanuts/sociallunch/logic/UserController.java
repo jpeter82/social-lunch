@@ -21,6 +21,13 @@ import java.util.List;
 @Controller
 public class UserController {
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public void setCryptPass(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    }
+
     private UserDao userDao;
 
 
@@ -29,7 +36,6 @@ public class UserController {
 
     }
 
-
     public List<User> getAllUsers() {
         return userDao.findAll();
     }
@@ -37,8 +43,6 @@ public class UserController {
     public String addUser(User user) {
         userDao.saveUser(user);
         return "/";
-
-
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -62,5 +66,4 @@ public class UserController {
         }
         return "login";
     }
-
 }
