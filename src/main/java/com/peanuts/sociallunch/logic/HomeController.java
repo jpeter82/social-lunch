@@ -17,6 +17,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showIndex(Model model) {
         model.addAttribute("events", eventDao.getAll());
+        model.addAttribute("username", null);
         return "home/index";
     }
 
@@ -28,12 +29,5 @@ public class HomeController {
         model.addAttribute("event", eventDao.findEventById(eventId));
         return "event";
     }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-        return "login";
-    }
-
-
 
 }

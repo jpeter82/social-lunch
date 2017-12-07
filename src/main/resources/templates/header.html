@@ -31,8 +31,23 @@
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/addevent">Events</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Tags</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">About us</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Log in</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                   href="/login">
+                    Log in
+                </a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/registration">Sign up</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase"
+                   href="/registration"
+                   th:if="${currentUser != null}"
+                   th:text="${currentUser.username}">Sign up</a>
+                <!--<div th:unless="${username == null}">-->
+                    <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase"-->
+                       <!--href="/login">-->
+                        <!--Log in-->
+                    <!--</a>-->
+                    <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="/registration">Sign up</a>-->
+                <!--</div>-->
+
             </nav>
         </div>
         <span class="android-mobile-title mdl-layout-title">
@@ -61,8 +76,8 @@
         <a class="mdl-navigation__link" href="/add-event">Events</a>
         <a class="mdl-navigation__link" href="">Tags</a>
         <a class="mdl-navigation__link" href="">About us</a>
-        <a class="mdl-navigation__link" href="">Log in</a>
-        <a class="mdl-navigation__link" href="">Sign up</a>
+        <a class="mdl-navigation__link" href="/login">Log in</a>
+        <a class="mdl-navigation__link" href="/registration">Sign up</a>
     </nav>
 </div>
 
