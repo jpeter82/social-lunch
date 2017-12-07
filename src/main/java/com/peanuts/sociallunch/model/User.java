@@ -50,7 +50,16 @@ public class User {
     private String username;
     @ManyToMany
     private List<Event> joinedEvents;
+    @OneToMany(mappedBy = "owner")
+    private List<Address> addresses;
 
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
 
     public void setId(long id) {
         this.id = id;

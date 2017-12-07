@@ -57,47 +57,34 @@
         <div class="android-more-section mdl-grid">
             <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
                 <div class="mdl-card__title">
-                    <h4 class="mdl-card__title-text" >Create new event</h4>
+                    <h4 class="mdl-card__title-text" >Create new address</h4>
                 </div>
                 <div class="mdl-card__supporting-text">
+                    <form action="#" th:action="@{/add-new-address}" th:object="${pina}" method="post">
 
-        <form action="#" th:action="@{/addevent}" th:object="${event}" method="post">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" th:field="*{country}" id="ne1"/>
+                            <label class="mdl-textfield__label" for="ne1">Country</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" th:field="*{city}" id="ne1"/>
+                            <label class="mdl-textfield__label" for="ne1">City</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" th:field="*{zipCode}" id="ne1"/>
+                            <label class="mdl-textfield__label" for="ne1">Zip code</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" th:field="*{addressLine}" id="ne1"/>
+                            <label class="mdl-textfield__label" for="ne1">Address line</label>
+                        </div>
 
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" th:field="*{title}" id="ne1"/>
-                <label class="mdl-textfield__label" for="ne1">Title</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" th:field="*{capacity}" id="ne2"/>
-                <label class="mdl-textfield__label" for="ne2">Event capacity</label>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="date" th:field="*{date}" id="ne3"/>
-            </div>
-            <!-- Address rolldown -->
+                        <!-- Raised button -->
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised block">
+                            Create address
+                        </button>
 
-            <div class="mdl-textfield mdl-js-textfield">
-                <select th:name="addressId">
-                    <option th:each="address : ${addresses}" th:text="${address.zipCode + ' ' + address.city + ', ' + address.addressLine}" th:value ="${address.id}">
-                    </option>
-                </select>
-                <p>
-                    <a href="/add-new-address">
-                        Add new address...
-                    </a>
-                </p>
-            </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" rows="4" type="text" th:field="*{description}" id="ne5"/>
-                <label class="mdl-textfield__label" for="ne5">Description</label>
-            </div>
-
-            <!-- Raised button -->
-            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised block">
-                Create event
-            </button>
-
-        </form>
+                    </form>
                 </div>
             </div>
         </div>

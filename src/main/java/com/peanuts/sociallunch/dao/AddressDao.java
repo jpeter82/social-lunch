@@ -22,8 +22,8 @@ public class AddressDao {
         return addressRepository.findAll();
     }
 
-    public  Address findById(long id) {
-        return addressRepository.findOne(id);
+    public  Address findById(int id) {
+        return addressRepository.findAddressById(id);
     }
 
 
