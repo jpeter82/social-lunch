@@ -4,6 +4,7 @@ import com.peanuts.sociallunch.logic.UserController;
 import com.peanuts.sociallunch.model.Address;
 import com.peanuts.sociallunch.model.Event;
 import com.peanuts.sociallunch.model.User;
+import com.peanuts.sociallunch.util.EncryptBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,10 @@ public class InitializerBean {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public String crypt(String pass) {
+        return bCryptPasswordEncoder.encode(pass);
+    }
 
     long time = System.currentTimeMillis();
     Timestamp date = new Timestamp(time);
@@ -37,7 +42,6 @@ public class InitializerBean {
                 "mark"
         );
 
-
         User newUser2 = new User(
                 "Joee",
                 "Smith",
@@ -50,7 +54,6 @@ public class InitializerBean {
                 null,
                 null,
                 "joe");
-
 
         User newUser3 = new User(
                 "pina",
@@ -65,6 +68,9 @@ public class InitializerBean {
                 null,
                 "pinaszaft");
 
+        userController.setCryptPass(newUser);
+        userController.setCryptPass(newUser2);
+        userController.setCryptPass(newUser3);
 
         userDao.saveUser(newUser);
         userDao.saveUser(newUser2);
