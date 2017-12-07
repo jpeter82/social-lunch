@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 
 @Controller
 public class HomeController {
@@ -25,9 +26,12 @@ public class HomeController {
     public String showEvent(
             Model model,
             @RequestParam(value = "eid", required = true) String eventId,
-            HttpSession session
+            HttpSession session,
+            Principal principal
             ) {
         System.out.println("Session ID: " + session.getId());
+        String name = principal.getName();
+        System.out.println("Ez a user neve: " + name);
         model.addAttribute("event", eventDao.findEventById(eventId));
         return "event";
     }

@@ -58,8 +58,6 @@ public class UserController {
             System.out.println("logout done");
             model.addAttribute("message", "Logged out from JournalDEV successfully.");
         }
-
-
         return "login";
     }
 
