@@ -24,11 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-//        TODO create html for these
-//        http.sessionManagement()
-//                .expiredUrl("/sessionExpired.html")
-//                .invalidSessionUrl("/invalidSession.html");
-
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
         http
                 .authorizeRequests()
@@ -44,13 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth//.jdbcAuthentication().authoritiesByUsernameQuery();
-//                .inMemoryAuthentication()
-//                .withUser("otto1").password("otto1").roles("USER");
-//
-//        auth//.jdbcAuthentication().authoritiesByUsernameQuery();
-//                .inMemoryAuthentication()
-//                .withUser("otto2").password("otto2").roles("USER");
 
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }

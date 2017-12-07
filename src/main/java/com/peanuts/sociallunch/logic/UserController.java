@@ -2,10 +2,7 @@ package com.peanuts.sociallunch.logic;
 
 import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.User;
-import com.peanuts.sociallunch.repository.UserRepository;
-//import com.peanuts.sociallunch.util.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
-import java.security.Principal;
 import java.util.List;
 
 @Controller

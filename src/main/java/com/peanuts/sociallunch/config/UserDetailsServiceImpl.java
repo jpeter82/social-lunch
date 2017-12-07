@@ -1,5 +1,6 @@
 package com.peanuts.sociallunch.config;
 
+import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.User;
 import com.peanuts.sociallunch.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDao userDao;
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findUserByUsername(username);
+        User user = userDao.findByUsername(username);
         System.out.println("User: " + user.getPassword() + " " + user.getUsername());
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("USER"));

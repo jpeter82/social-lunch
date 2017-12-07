@@ -15,11 +15,9 @@ public class Review {
     private int id;
 
     @ManyToOne
-    //@Column(name = "review_giver", nullable = false)
     private User giver;
 
     @ManyToOne
-//    @Column(name = "review_receiver")
     private User receiver;
 
     @ManyToOne
@@ -29,7 +27,7 @@ public class Review {
     private int rating;
 
 
-    @Column(name = "created") // nullable = false)
+    @Column(name = "created")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Date createdDate;
 

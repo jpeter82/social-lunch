@@ -4,7 +4,6 @@ import com.peanuts.sociallunch.logic.UserController;
 import com.peanuts.sociallunch.model.Address;
 import com.peanuts.sociallunch.model.Event;
 import com.peanuts.sociallunch.model.User;
-import com.peanuts.sociallunch.util.EncryptBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
