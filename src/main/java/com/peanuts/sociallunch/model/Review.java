@@ -40,9 +40,8 @@ public class Review {
         this.id = id;
     }
 
-    public Review(User giver, User receiver, Event event, int rating) {
+    public Review(User giver, Event event, int rating) {
         this.giver = giver;
-        this.receiver = receiver;
         this.event = event;
         this.rating = rating;
     }

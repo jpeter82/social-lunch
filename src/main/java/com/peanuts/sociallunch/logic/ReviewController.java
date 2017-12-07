@@ -6,20 +6,20 @@ import com.peanuts.sociallunch.model.Event;
 import com.peanuts.sociallunch.model.Review;
 import com.peanuts.sociallunch.model.User;
 import com.peanuts.sociallunch.util.ViewUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+@Controller
 public class ReviewController {
 
-    private ReviewDao reviewDao;
-    private UserDao userDao;
+    @Autowired
+    ReviewDao reviewDao;
 
-    public ReviewController(ReviewDao reviewDao, UserDao userDao) {
-        this.reviewDao = reviewDao;
-        this.userDao = userDao;
-    }
+
 
     /*public Route getAllReview = (Request request, Response response) -> ViewUtil.render(request, new HashMap(),"review");
 
