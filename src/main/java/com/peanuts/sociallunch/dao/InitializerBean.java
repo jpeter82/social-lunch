@@ -68,23 +68,9 @@ public class InitializerBean {
                 null,
                 "pinaszaft");
 
-        //newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
-        //System.out.println(crypt(newUser.getPassword()));
-        //newUser.setPassword(crypt(newUser.getPassword()));
-        //newUser.encryptPassword();
-        //newUser2.encryptPassword();
-        //newUser3.encryptPassword();
-
-        //encryptBean.encode("valami");
-
         userController.setCryptPass(newUser);
         userController.setCryptPass(newUser2);
         userController.setCryptPass(newUser3);
-
-
-        //System.out.println(bCryptPasswordEncoder.encode(newUser.getPassword()));
-
-
 
         userDao.saveUser(newUser);
         userDao.saveUser(newUser2);
