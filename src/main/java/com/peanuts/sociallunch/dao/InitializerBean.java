@@ -63,7 +63,7 @@ public class InitializerBean {
         userDao.saveUser(newUser3);
 
         Address newAdress = new Address("HUN", "Csobánka", "Csocsi",
-                "utca", "10");
+                "utca", newUser);
 
         addressDao.saveAddress(newAdress);
 

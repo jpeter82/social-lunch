@@ -48,7 +48,16 @@ public class User {
     private List<Review> receivedReviewList;
     @Column(name = "username")
     private String username;
+    @OneToMany(mappedBy = "owner")
+    private List<Address> addresses;
 
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
 
     public void setId(long id) {
         this.id = id;
