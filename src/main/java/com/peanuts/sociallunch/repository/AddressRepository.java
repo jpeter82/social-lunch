@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
 
-    //List<Event> findByTitle(String title);
+    Address findAddressById(int id);
 
 
 }

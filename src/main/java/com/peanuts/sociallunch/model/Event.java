@@ -45,6 +45,15 @@ public class Event {
     public Event() {
     }
 
+    public Event(String title, User host, Integer capacity, Address address, String description, Date date) {
+        this.title = title;
+        this.host = host;
+        this.capacity = capacity;
+        this.address = address;
+        this.description = description;
+        this.date = date;
+    }
+
     public Event(String title, Integer capacity, Address address, String description) {
         this.title = title;
         this.capacity = capacity;

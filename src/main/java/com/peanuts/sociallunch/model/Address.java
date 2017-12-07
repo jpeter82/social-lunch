@@ -3,9 +3,6 @@ package com.peanuts.sociallunch.model;
 import javax.persistence.*;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "getAll", query = "SELECT a FROM Address a")
-})
 @Table(name="addresses")
 public class Address {
 
@@ -25,18 +22,18 @@ public class Address {
     @Column(name = "address_line")
     private String addressLine;
 
-    @Column(name = "alias")
-    private String alias;
+    @ManyToOne
+    private User owner;
 
     public Address() {
     }
 
-    public Address(String country, String city, String zipCode, String addressLine, String alias) {
+    public Address(String country, String city, String zipCode, String addressLine, User owner) {
         this.country = country;
         this.city = city;
         this.zipCode = zipCode;
         this.addressLine = addressLine;
-        this.alias = alias;
+        this.owner = owner;
     }
 
     public int getId() {
@@ -67,12 +64,12 @@ public class Address {
         this.addressLine = name;
     }
 
-    public String getAlias() {
-        return alias;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setAlias(String type) {
-        this.alias = type;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public String getZipCode() {

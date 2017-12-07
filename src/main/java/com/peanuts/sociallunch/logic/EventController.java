@@ -1,6 +1,7 @@
 package com.peanuts.sociallunch.logic;
 
 
+import com.peanuts.sociallunch.dao.AddressDao;
 import com.peanuts.sociallunch.dao.EventDao;
 import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.Event;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
@@ -23,10 +25,12 @@ public class EventController {
 
     private EventDao eventDao;
     private UserDao userDao;
+    private AddressDao addressDao;
 
-    public EventController(EventDao eventDao, UserDao userDao) {
+    public EventController(EventDao eventDao, UserDao userDao, AddressDao addressDao) {
         this.eventDao = eventDao;
         this.userDao = userDao;
+        this.addressDao = addressDao;
     }
 
     public void addEvent(Event event) {
@@ -34,17 +38,18 @@ public class EventController {
     }
 
     @RequestMapping(value = "/addevent", method = RequestMethod.GET)
-    public String showNewEventForm(Model model, HttpSession session) {
+    public String showNewEventForm(Model model) {
+        model.addAttribute("addresses", addressDao.getAll());
         model.addAttribute("event", new Event());
         return "new-event";
     }
 
     @RequestMapping(value = "/addevent", method = RequestMethod.POST)
-    public String addEventForm(@ModelAttribute Event event, HttpSession session) {
+    public String addEventForm(@ModelAttribute Event event, @RequestParam String addressId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         event.setHost(userDao.findByUsername(username));
-        System.out.println(event.getHost().getUsername());
+        event.setAddress(addressDao.findById(Integer.parseInt(addressId)));
         addEvent(event);
         return "redirect:/";
     }
