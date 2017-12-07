@@ -5,17 +5,13 @@ import com.peanuts.sociallunch.dao.AddressDao;
 import com.peanuts.sociallunch.dao.EventDao;
 import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.Event;
-//import com.peanuts.sociallunch.util.EventService;
 import com.peanuts.sociallunch.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
@@ -53,6 +49,21 @@ public class EventController {
         addEvent(event);
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/event/{event-id}/join", method = RequestMethod.GET)
+    public String joinEvent(@PathVariable("event-id") String eventId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Event event = eventDao.findEventById(eventId);
+
+        if (!auth.getName().equals(event.getHost().getUsername())) {
+            event.getJoinedUsers().add(userDao.findByUsername(username));
+            eventDao.saveEvent(event);
+        }
+
+        return "redirect:/event?eid=" + eventId;
+    }
+
 
 /*
 

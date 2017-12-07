@@ -6,7 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.Date;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NamedQueries({
@@ -41,8 +43,15 @@ public class Event {
     private Timestamp createdDate;
     @Column(name = "picture")
     private String picture;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "event_user",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> joinedUsers;
 
     public Event() {
+        this.joinedUsers = new HashSet<>();
     }
 
     public Event(String title, User host, Integer capacity, Address address, String description, Date date) {
@@ -59,6 +68,7 @@ public class Event {
         this.capacity = capacity;
         this.address = address;
         this.description = description;
+        this.joinedUsers = new HashSet<>();
     }
 
     public Event(User host, Address address, String description, Date date, String title, String picture) {
@@ -68,6 +78,7 @@ public class Event {
         this.date = date;
         this.picture = picture;
         this.title = title;
+        this.joinedUsers = new HashSet<>();
     }
 
     public Event(String title, User host, Integer capacity, Address address, 
@@ -79,6 +90,21 @@ public class Event {
         this.description = description;
         this.date = date;
         this.createdDate = createdDate;
+        this.joinedUsers = new HashSet<>();
+    }
+
+    public Event(String title, User host, Integer capacity, Address address, String description, List<Tag> tagList, List<Review> reviewList, Date date, Timestamp createdDate, String picture, Set<User> joinedUsers) {
+        this.title = title;
+        this.host = host;
+        this.capacity = capacity;
+        this.address = address;
+        this.description = description;
+        this.tagList = tagList;
+        this.reviewList = reviewList;
+        this.date = date;
+        this.createdDate = createdDate;
+        this.picture = picture;
+        this.joinedUsers = joinedUsers;
     }
 
     public long getId() {
@@ -168,5 +194,13 @@ public class Event {
     public void setPicture(String picture) {
         this.picture = picture;
     }
-}
 
+    public Set<User> getJoinedUsers() {
+        return joinedUsers;
+    }
+
+    public void setJoinedUsers(Set<User> joinedUsers) {
+        this.joinedUsers = joinedUsers;
+    }
+
+}

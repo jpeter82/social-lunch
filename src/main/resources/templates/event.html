@@ -45,6 +45,9 @@
             margin-bottom: 40px;
             z-index: 900;
         }
+        #joined {
+            list-style-type: none;
+        }
     </style>
 </head>
 <body>
@@ -87,14 +90,16 @@
                         <h4 class="mdl-card__title-text">Participants:</h4>
                     </div>
                     <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">
-                </span>
-
-                            <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase"
-                               th:href="@{~/event(eid=${event.id})}">
+                        <span class="mdl-typography--font-light mdl-typography--subhead"></span>
+                        <ul th:each="user : ${event.joinedUsers}" th:if="${not #lists.isEmpty(event.joinedUsers)}">
+                            <li th:text="${user.username}" id="joined" class="mdl-typography--text-uppercase">Dummy User</li>
+                        </ul>
+                        <span th:if="${username} != ${event.host.username}">
+                            <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" th:href="@{/event/{eventid}/join(eventid=${event.id})}">
                                 join
                                 <i class="material-icons">touch_app</i>
                             </a>
+                        </span>
                     </div>
                     <!--<div class="mdl-card__actions">-->
                         <!--<a class="android-link mdl-button mdl-js-button mdl-typography&#45;&#45;text-uppercase"-->

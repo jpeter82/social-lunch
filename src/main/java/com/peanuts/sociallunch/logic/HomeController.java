@@ -7,7 +7,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -27,11 +26,17 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/event", method = RequestMethod.GET)
-
     public String showEvent(Model model,
                             @RequestParam(value = "eid", required = true) String eventId,
                             HttpSession session) {
+
         model.addAttribute("event", eventDao.findEventById(eventId));
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth.getName() != null && !auth.getName().equals("")) {
+            model.addAttribute("username", auth.getName());
+        }
+
         return "event";
     }
 
