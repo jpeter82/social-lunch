@@ -8,3 +8,8 @@
 .block {
     display: block;
 }
+
+#logout {
+    border: none;
+    cursor: pointer;
+}

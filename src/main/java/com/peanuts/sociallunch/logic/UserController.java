@@ -52,22 +52,9 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model,
                         @RequestParam(value = "logout", required = false) String logout) {
-        //String name = principal.getName();
-        //model.addAttribute("username", name);
         if (logout != null) {
-            System.out.println("logout done");
-            model.addAttribute("message", "Logged out from JournalDEV successfully.");
+            model.addAttribute("message", "Logged out, see You soon.");
         }
         return "login";
     }
-
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(Model model, HttpSession session) {
-        session.invalidate();
-        System.out.println("logout done");
-        model.addAttribute("message", "Logged out, see You soon.");
-
-        return "login";
-    }
-
 }
