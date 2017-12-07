@@ -48,6 +48,8 @@ public class User {
     private List<Review> receivedReviewList;
     @Column(name = "username")
     private String username;
+    @ManyToMany
+    private List<Event> joinedEvents;
 
 
     public void setId(long id) {
