@@ -44,8 +44,10 @@ public class EventController {
 
     @RequestMapping(value = "/addevent", method = RequestMethod.POST)
     public String addEventForm(@ModelAttribute Event event, HttpSession session) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
         event.setHost(userDao.findByUsername(username));
+        System.out.println(event.getHost().getUsername());
         addEvent(event);
         return "redirect:/";
     }

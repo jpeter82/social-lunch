@@ -20,47 +20,35 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Column(name = "first_name")
     private String firstName;
-
     @Column(name = "last_name")
     private String lastName;
-
     @Column(name = "email", nullable = false, unique = true)
     private String email;
-
     @Column
     private String phone;
-
     @Column(name = "password")//, nullable = false)
     private String password;
-
     @Column(name = "image_file_name")
     private String imageFileName;
-
     @Column(name = "is_active", columnDefinition = "smallint default 1")
     private byte isActive;
-
     @Column(name = "is_admin", columnDefinition = "smallint default 0")
     private byte isAdmin;
-
     @CreationTimestamp
     @Column(name = "created")
     private Timestamp createdDate;
-
     @UpdateTimestamp
     @Column(name = "modified")
     private Timestamp modifiedDate;
-
     @OneToMany(mappedBy = "giver")
     private List<Review> givenReviewList;
-
     @OneToMany(mappedBy = "receiver")
     private List<Review> receivedReviewList;
-
     @Column(name = "username")
     private String username;
+
 
     public void setId(long id) {
         this.id = id;
@@ -140,7 +128,7 @@ public class User {
                 byte isAdmin,
                 List<Review> givenReviewList,
                 List<Review> receivedReviewList,
-                String userName) {
+                String username) {
 
         this.firstName = firstName;
         this.lastName = lastName;
