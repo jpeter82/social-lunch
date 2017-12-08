@@ -5,6 +5,11 @@ import com.peanuts.sociallunch.dao.AddressDao;
 import com.peanuts.sociallunch.dao.EventDao;
 import com.peanuts.sociallunch.dao.UserDao;
 import com.peanuts.sociallunch.model.Event;
+
+import com.peanuts.sociallunch.model.User;
+import com.peanuts.sociallunch.repository.EventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -56,6 +61,17 @@ public class EventController {
             eventDao.saveEvent(event);
         }
 
+        return "redirect:/event?eid=" + eventId;
+    }
+
+    @RequestMapping(value = "/event/{event-id}/leave", method = RequestMethod.GET)
+    public String leaveEvent(@PathVariable("event-id") String eventId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Event event = eventDao.findEventById(eventId);
+        User user = userDao.findByUsername(username);
+        event.getJoinedUsers().remove(user);
+        eventDao.saveEvent(event);
         return "redirect:/event?eid=" + eventId;
     }
 

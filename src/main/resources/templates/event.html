@@ -93,10 +93,18 @@
                             <li th:text="${user.username}" id="joined" class="mdl-typography--text-uppercase">Dummy User</li>
                         </ul>
                         <span th:if="${username} != ${event.host.username}">
-                            <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" th:href="@{/event/{eventid}/join(eventid=${event.id})}">
-                                join
-                                <i class="material-icons">touch_app</i>
-                            </a>
+                            <span th:if="${#lists.contains(joined_usernames, username)}">
+                                <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" th:href="@{/event/{eventid}/leave(eventid=${event.id})}">
+                                    <span>leave</span>
+                                    <i class="material-icons">touch_app</i>
+                                </a>
+                            </span>
+                            <span th:if="${not #lists.contains(joined_usernames, username)}">
+                                <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" th:href="@{/event/{eventid}/join(eventid=${event.id})}">
+                                    <span>join</span>
+                                    <i class="material-icons">touch_app</i>
+                                </a>
+                            </span>
                         </span>
                     </div>
                 </div>
