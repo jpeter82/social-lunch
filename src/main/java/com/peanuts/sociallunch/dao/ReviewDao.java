@@ -2,7 +2,6 @@ package com.peanuts.sociallunch.dao;
 
 import com.peanuts.sociallunch.model.Event;
 import com.peanuts.sociallunch.model.Review;
-import com.peanuts.sociallunch.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

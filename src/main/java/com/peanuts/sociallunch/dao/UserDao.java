@@ -5,8 +5,6 @@ import com.peanuts.sociallunch.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.jws.soap.SOAPBinding;
-import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service

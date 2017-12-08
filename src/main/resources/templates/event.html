@@ -62,7 +62,8 @@
                 <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
                     <div class="mdl-card__title">
                         <h4 class="mdl-card__title-text" th:text="${event.title}"></h4>
-                        <!--<p class="event-view-by" th:text="'by ' + ${event.host.firstName} + ' ' + ${event.host.lastName}"> by</p>-->
+                        <p class="event-view-by" th:text="'by ' + ${event.host.firstName} + ' ' + ${event.host.lastName}"> by</p> <br/>
+                        <p class="event-view-by" th:text="${event.date} + ' at ' + ${event.address.city} + ${event.address.addressLine}"> by</p>
                     </div>
                     <div class="mdl-card__media">
                         <img th:attr="src='/images/' + ${event.picture}" />
@@ -71,9 +72,6 @@
                 <span class="mdl-typography--font-light mdl-typography--subhead"
                       th:text="${event.description}">
                 </span>
-                        <!--<br><br><a class="mdl-typography&#45;&#45;font-light mdl-typography&#45;&#45;subhead custom-link"-->
-                                   <!--th:text="'Host: ' + ${event.host.firstName} + ' ' + ${event.host.lastName}"-->
-                                   <!--th:href="@{~/host(hid=${event.id})}">host link</a>-->
 
                     </div>
                     <div class="mdl-card__actions">
@@ -109,13 +107,6 @@
                             </span>
                         </span>
                     </div>
-                    <!--<div class="mdl-card__actions">-->
-                        <!--<a class="android-link mdl-button mdl-js-button mdl-typography&#45;&#45;text-uppercase"-->
-                           <!--th:href="@{~/event(eid=${event.id})}">-->
-                            <!--Write a review-->
-                            <!--<i class="material-icons">chevron_right</i>-->
-                        <!--</a>-->
-                    <!--</div>-->
                 </div>
             </div>
         </div>

@@ -8,11 +8,6 @@ public class App {
 
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
-
-        /*DIContainer cont = new DIContainer();
-        SocialLunch app = cont.init();
-        app.start();*/
-
     }
 
 

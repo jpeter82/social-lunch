@@ -4,7 +4,6 @@ import com.peanuts.sociallunch.logic.UserController;
 import com.peanuts.sociallunch.model.Address;
 import com.peanuts.sociallunch.model.Event;
 import com.peanuts.sociallunch.model.User;
-import com.peanuts.sociallunch.util.EncryptBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -27,6 +26,9 @@ public class InitializerBean {
     String lorem =  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
             "Vestibulum faucibus sapien sit amet lectus dictum, " +
             "non convallis sapien blandit.";
+
+    String markBday1 = "Absztinens, szíriuszi nyersvegán mulatság, keresztyén dalokkal, rózsafüzér-olvasással, és klarisszás apácák zsoltáraival fűszerezett istentisztelettel egybekötve.";
+    String markBday2 = "Alkoholgőzös világi tivornya, anyagyalázó death metallal, misztériumjátékokkal, sátánidézéssel és Antikrisztusvárással egybekötve.";
 
     public InitializerBean(AddressDao addressDao, EventDao eventDao, UserDao userDao, UserController userController) {
 
@@ -56,17 +58,17 @@ public class InitializerBean {
                 "joe");
 
         User newUser3 = new User(
-                "pina",
-                "szaft",
-                "abcd@efgh.com",
+                "Boaty",
+                "McBoatface",
+                "nemvagyokrobot@gmail.com",
                 "66666666666",
-                "1234",
+                "OrbánViktor=Jézus",
                 "imgfilename",
                 (byte) 1,
                 (byte) 0,
                 null,
                 null,
-                "pinaszaft");
+                "bigblakbuty");
 
         userController.setCryptPass(newUser);
         userController.setCryptPass(newUser2);
@@ -79,12 +81,22 @@ public class InitializerBean {
         Address newAdress = new Address("HUN", "Csobánka", "Csocsi",
                 "utca", newUser);
 
+        Address newAdress2 = new Address("HUN", "Tormafölde", "6666",
+                "Petőfi utca 666.", newUser3);
+
         addressDao.saveAddress(newAdress);
+        addressDao.saveAddress(newAdress2);
 
         Event event1 = new Event(newUser, newAdress, lorem, date, "Let's eat",
                 "bb.jpg");
+        Event event2 = new Event(newUser3, newAdress2, markBday1, date, "Márk szülinap",
+                "bb.jpg");
+        Event event3 = new Event(newUser2, newAdress2, markBday2, date, "Márk szülinap",
+                "bb.jpg");
 
         eventDao.saveEvent(event1);
+        eventDao.saveEvent(event2);
+        eventDao.saveEvent(event3);
     }
 
 
