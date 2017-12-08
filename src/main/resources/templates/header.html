@@ -28,27 +28,27 @@
         <!-- Navigation -->
         <div class="android-navigation-container">
             <nav class="android-navigation mdl-navigation">
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/addevent">Events</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="/addevent">Add events</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Tags</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">About us</a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase"
                    href="/login"
-                   th:unless="${username}">
+                   th:unless="${#httpServletRequest.remoteUser}">
                     Log in
                 </a>
-                <form th:action="@{/logout}" th:if="${username}" method="post">
+                <form th:action="@{/logout}" th:if="${#httpServletRequest.remoteUser}" method="post">
                     <button class="mdl-navigation__link mdl-typography--text-uppercase logout"
                             type="submit" value="Sign Out">Log out</button>
                 </form>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase"
                    href="#"
-                   th:if="${username}"
-                   th:text="${username}">
+                   th:if="${#httpServletRequest.remoteUser}"
+                   th:text="${#httpServletRequest.remoteUser}">
                     Hello!
                 </a>
                 <a class="mdl-navigation__link mdl-typography--text-uppercase"
                    href="/registration"
-                   th:unless="${username}"
+                   th:unless="${#httpServletRequest.remoteUser}"
                     >
                     Sign up
                 </a>
